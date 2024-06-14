@@ -1,0 +1,375 @@
+# Kernel info
+ini_set("kernel_name",             "San-Kernel");
+ini_set("kernel_version",          "Codename-RX.X.XXX");
+ini_set("kernel_author",           "user_why_red Aka Santhosh");
+ini_set("kernel_device",           "Whyred");
+ini_set("kernel_date",             "0000.00.00");
+# End
+
+# Splash algorithm  and themes
+
+ini_set("force_colorspace", "rgba");
+
+fontresload("0", "ttf/VonwaonBitmap-16pxLite.ttf", "12");
+fontresload("1", "ttf/VonwaonBitmap-16pxLite.ttf", "16");
+theme("default");
+
+setvar("random_num", resexec("random_num.sh"));
+
+# 2/5
+cmp(getvar("random_num"), ">=", "0") && cmp(getvar("random_num"), "<=", "3") && splash(1500, "splash");
+# 2/5
+cmp(getvar("random_num"), ">=", "4") && cmp(getvar("random_num"), "<=", "7") && splash(1500, "splash_2");
+# 1/5
+cmp(getvar("random_num"), ">=", "8") && splash(2000, "splash_3");
+# Splash algorithm  and themes end
+
+# Select language
+menubox(
+    "\n<@center>Select Language</@>",
+    "<@center>\nPilih bahasa\n\n\n\n</@>",
+    "",
+    "lang.prop",
+    "English", "", "",
+    "Indonesian", "", ""
+);
+# End
+
+# Variables for english language
+if prop("lang.prop", "selected") == "1" then
+    loadlang("langs/en.lang");
+	setvar("s_version",      "Version");
+	setvar("s_author",       "Author");
+	setvar("s_release",      "Release");
+	setvar("s_press_next",   "Press next to continue...");
+	setvar("s_error",        "Error!");                    
+	setvar("s_warning",      "Warning!");
+	setvar("s_ok",           "OK!");
+	setvar("s_done",         "Done!");
+	setvar("s_plswait",      "Please wait...");
+	
+	setvar("s_x_device",	 "This kernel is only for Redmi Note 5 Pro (Whyred) devices!");
+	
+	setvar("s_oc",           "Need to overclock CPU?");
+	setvar("s_oc_note",      "Note: Choose \"yes\" if you need best performance and gaming\n& don't care about CPU life and battery life.\n\nBeware of overheat and high electricity bill");
+	setvar("s_oc_yes",       "Yes (BIG: 1113-2208 MHz, LITTLE: 633-1843 MHz)");
+	setvar("s_oc_no",        "No (BIG: 1113-1843 MHz, LITTLE: 633-1612 MHz)");
+
+	setvar("s_oc_gpu",       "Need to overclock GPU?");
+	setvar("s_oc_gpu_note",  "Note: Choose \"yes\" if you need best performance and gaming\n& don't care about GPU life and battery life.\n\nBeware of overheat and high electricity bill");
+        setvar("s_oc_gpu_yes",   "Yes (Base: 19Mhz, Max: 585Mhz)");
+        setvar("s_oc_gpu_no",    "No (Base: 19Mhz, Max: 430Mhz)");
+
+	setvar("s_uv",           "Need UV?");
+        setvar("s_uv_note",      "Note: Reducing the voltage can save battery, but excessive voltage reduction will cause device instability!\n(not booting, randomly reboot, abnormal display)\nAt this point you need to reflash this kernel and lower the UV level.");
+        setvar("s_uv_no",        "No, please keep default voltage.");
+        setvar("s_uv_yes",       "Yes, I need it!");
+        setvar("s_uv_warning",   "If the device is damaged or data is lost due to UV, developer of San-Kernel is not responsible for it!");
+
+	setvar("s_em",           "Select EAS energy model");
+	setvar("s_em_1",         "Note: The default is \"CAF\" energy model.\nKeep default if you don't know about energy model.");
+	setvar("s_em_s1",        "CAF (From Qualcomm, designed for sdm660)");
+	setvar("s_em_s2",        "Kdrag0n (Calculated for sdm660)");
+	setvar("s_em_s3",        "Kdrag0n (Calculated for sdm636)");
+	setvar("s_em_s3_sub",    "Note: Not available if you enabled overclock");
+	setvar("s_em_s4",        "Hypeartist (Calculated by hypeartist)");
+	setvar("s_em_s_na",      "This energy model is not available,\nplease select another.");
+
+	setvar("s_ecpu_uv",      "Select UV level of the efficiency cores");
+	setvar("s_ecpu_uv_note", "Note: The efficiency cores (LITTLE) focuses more on battery saving, it's suitable for the daily tasks of the device.");
+	setvar("s_pcpu_uv",      "Select UV level of the performance cores");
+	setvar("s_pcpu_uv_note", "Note: The performance cores (BIG) focuses more on performance, it's suitable for gaming.");
+	setvar("s_uv_lvl1",       "No UV (default)");
+	setvar("s_uv_lvl2",       "20 mV");
+	setvar("s_uv_lvl3",       "40 mV");
+	setvar("s_uv_lvl4",       "80 mV (Stable!)");
+	setvar("s_uv_lvl5",       "100 mV (Unstable!)");
+	setvar("s_uv_lvl6",       "120 mV (Broken!)");
+
+	setvar("s_wipe_cache_t", "Wipe dalvik-cache & cache");
+	setvar("s_wipe_cache_w", "Do not do this if you don't know\nwhat are you doing!\n\nContinue?");
+	setvar("s_wipe_cache_d", "Note: The next boot may take 1~10 minutes,\nbecause system needs to rebuild dalvik-cache.\nPlease wait patiently.");
+	setvar("s_text_yes",     "Take the risk");
+	setvar("s_ready",        "Ready to install");
+	setvar("s_installing",   "Installing");
+	setvar("s_installing_1", "Installing San Kernel\nPlease wait");
+	setvar("s_ins_finish",   "Installation Completed");
+	setvar("s_ins_finish_1", "Congratulations!");
+	setvar("s_ins_finish_2", "has been installed into your device.");
+	setvar("s_reboot",       "Reboot your device now");
+	setvar("s_ins_failed",   "Installation Failed");
+	setvar("s_exit_code",    "Installer Status: ");
+	setvar("s_ready_con",    "Please confirm");
+	setvar("s_ready_ins",    "Install ");
+	setvar("s_abort",        "Abort installation");
+endif;
+# Variables for english language end
+
+# Variables for indonesian language
+if prop("lang.prop", "selected") == "2" then
+    loadlang("langs/indo.lang");
+	setvar("s_version",      "Versi: kapan");
+        setvar("s_author",       "Pengarang");
+	setvar("s_release",      "Melepaskan");
+        setvar("s_press_next",   "Tekan tombol apa saja untuk melanjutkan...");
+	setvar("s_error",        "Kesalahan!");
+        setvar("s_warning",      "Kesalahan!");
+        setvar("s_ok",           "Oke!");
+        setvar("s_done",         "Selesai!");
+	setvar("s_plswait",      "Harap tunggu...");
+
+	setvar("s_x_device",     "Kernel ini hanya untuk perangkat Redmi Note 5 Pro (Whyred)!");
+
+	setvar("s_oc",           "Perlu melakukan overclock CPU?");
+        setvar("s_oc_note",      "Catatan: Pilih \"ya\" jika Anda menginginkan performa dan permainan terbaik\n& tidak peduli dengan masa pakai CPU dan masa pakai baterai.\n\nHati-hati terhadap panas berlebih dan tagihan listrik yang tinggi");
+        setvar("s_oc_yes",       "Ya (BESAR: 1113-2208 MHz, KECIL: 633-1843 MHz)");
+        setvar("s_oc_no",        "Tidak (BESAR: 1113-1843 MHz, KECIL: 633-1612 MHz)");
+
+	setvar("s_oc_gpu",	 "Perlu melakukan overclock GPU?");
+        setvar("s_oc_gpu_note",  "Catatan: Pilih \"ya\" jika Anda memerlukan performa dan permainan terbaik\n& tidak peduli dengan masa pakai GPU dan masa pakai baterai.\n\nWaspadalah terhadap panas berlebih dan tagihan listrik yang tinggi");
+        setvar("s_oc_gpu_yes",   "Ya (Basis: 19Mhz, Maks: 585Mhz)");
+        setvar("s_oc_gpu_no",	 "Tidak (Basis: 19Mhz, Maks: 430Mhz)");
+
+	setvar("s_uv",		 "Butuh UV?");
+        setvar("s_uv_note",	 "Catatan: Mengurangi tegangan dapat menghemat baterai, tetapi pengurangan tegangan yang berlebihan akan menyebabkan ketidakstabilan perangkat!\n(tidak dapat melakukan booting, reboot secara acak, tampilan tidak normal)\nPada titik ini Anda perlu melakukan reflash kernel ini dan menurunkan tingkat UV.");
+        setvar("s_uv_no",	 "Tidak, harap pertahankan voltase default.");
+        setvar("s_uv_yes",	 "Ya, saya membutuhkannya!");
+        setvar("s_uv_warning",	 "Jika perangkat rusak atau data hilang karena UV, pengembang San-Kernel tidak bertanggung jawab!");
+
+	setvar("s_em",		 "Pilih model energi EAS");
+        setvar("s_em_1",	 "Catatan: Defaultnya adalah model energi \"CAF\".\nTetap default jika Anda tidak tahu tentang model energi.");
+        setvar("s_em_s1",	 "CAF (Dari Qualcomm, dirancang untuk sdm660)");
+        setvar("s_em_s2",	 "Kdrag0n (Dihitung untuk sdm660)");
+        setvar("s_em_s3",	 "Kdrag0n (Dihitung untuk sdm636)");
+        setvar("s_em_s3_sub",	 "Catatan: Tidak tersedia jika Anda mengaktifkan overclock");
+        setvar("s_em_s4",	 "Hypeartist (Dihitung oleh hyperartist)");
+        setvar("s_em_s_na",	 "Model energi ini tidak tersedia,\nsilakan pilih yang lain.");
+
+	setvar("s_ecpu_uv",	 "Pilih tingkat UV inti daya");
+	setvar("s_ecpu_uv_note", "Catatan: Inti daya (LITTLE) lebih berfokus pada penghematan baterai, cocok untuk tugas sehari-hari perangkat.");
+	setvar("s_pcpu_uv",	 "Pilih level UV dari inti kinerja");
+	setvar("s_pcpu_uv_note", "Catatan: Inti kinerja (besar) lebih fokus pada kinerja, cocok untuk bermain game.");
+	setvar("s_uv_lvl1",	 "Tidak ada UV (default)");
+	setvar("s_uv_lvl2",	 "20 mV");
+	setvar("s_uv_lvl3",	 "40 mV");
+	setvar("s_uv_lvl4",	 "80 mV (Stable!)");
+	setvar("s_uv_lvl5",	 "100 mV (Unstable!)");
+	setvar("s_uv_lvl6",      "120 mV (Broken!)");
+
+	setvar("s_wipe_cache_t", "Hapus dalvik-cache & cache");
+        setvar("s_wipe_cache_w", "Jangan lakukan ini jika Anda tidak tahu\napa yang Anda lakukan!\n\nLanjutkan?");
+        setvar("s_wipe_cache_d", "Catatan: Boot berikutnya mungkin memakan waktu 1~10 menit,\nkarena sistem perlu membangun kembali dalvik-cache.\nHarap menunggu dengan sabar.");
+        setvar("s_text_yes",	 "Ambil resiko");
+        setvar("s_ready",	 "Siap dipasang");
+        setvar("s_installing",	 "Instalasi");
+        setvar("s_installing_1", "Menginstal San Kernel\nMohon tunggu");
+        setvar("s_ins_finish",	 "Instalasi Selesai");
+        setvar("s_ins_finish_1", "Selamat!");
+        setvar("s_ins_finish_2", "telah diinstal pada perangkat Anda.");
+        setvar("s_reboot",	 "Reboot perangkat Anda sekarang");
+        setvar("s_ins_failed",	 "Instalasi Gagal");
+        setvar("s_exit_code",	 "Status Pemasang: ");
+        setvar("s_ready_con",	 "Harap konfirmasi");
+        setvar("s_ready_ins",	 "Instal");
+        setvar("s_abort",	 "Batalkan instalasi");
+
+endif;
+# Indonesian lang variables end
+
+# Display Package details
+viewbox(
+    "\n<@center>" + ini_get("kernel_name") + "</@>",
+    "<@center>\n" + ini_get("kernel_device") + "\n\n</@>" +
+    "\n\n\n\n  " + getvar("s_version") + " \t: <#selectbg_g>" + ini_get("kernel_version") + "</#>\n" +
+    "  " + getvar("s_author") + " \t: <#selectbg_g>" + ini_get("kernel_author") + "</#>\n" +
+    "  " + getvar("s_release") + " \t: <#selectbg_g>" + ini_get("kernel_date") + "</#>\n\n\n" +
+    getvar("s_press_next"),
+    ""
+);
+# End
+
+# Check device
+if resexec("is_whyred.sh") != "0" then 
+   alert(
+	getvar("s_error"),
+	getvar("s_x_device"),
+	"@trash",
+	getvar("s_ok")
+	);
+	exit("");
+endif;
+# Check device end
+
+# CPU oc
+selectbox(
+    "\n\n<@center>" + getvar("s_oc") + "</@>",
+    "<@center>\n\n\n\n\n\n\n\n" + getvar("s_oc_note") + "\n</@>",
+    "",
+    "cpu_oc.prop",
+    getvar("s_oc_yes"), "", 0,
+    getvar("s_oc_no"), "", 1
+);	        
+# CPU oc end
+
+# GPU oc
+selectbox(
+    "\n\n<@center>" + getvar("s_oc_gpu") + "</@>",
+    "<@center>\n\n\n\n\n\n\n\n" + getvar("s_oc_gpu_note") + "\n</@>",
+    "",
+    "gpu_oc.prop",
+    getvar("s_oc_gpu_yes"), "", 0,
+    getvar("s_oc_gpu_no"), "", 1
+);
+# GPU oc end
+
+# Uv confirm
+selectbox(
+    "\n\n<@center>" + getvar("s_uv") + "</@>",
+    "<@center>\n\n\n\n\n\n\n\n" + getvar("s_uv_note") + "\n</@>",
+    "",
+    "uv_confirm.prop",
+    getvar("s_uv_no"), "", 1,
+    getvar("s_uv_yes"), "", 0
+);
+# Uv confirm end
+
+# Uv risk button
+if prop("uv_confirm.prop", "selected.0") == "2" then
+    alert(
+        getvar("s_warning"),
+        getvar("s_uv_warning"),
+        "@warning",
+        getvar("s_text_yes")
+);
+# Uv risk button end
+
+# Uv for e cores
+    selectbox(
+        "\n\n<@center>" + getvar("s_ecpu_uv") + "</@>",
+        "<@center>\n\n\n\n\n\n\n\n" + getvar("s_ecpu_uv_note") + "\n</@>",
+        "",
+        "ecpu_uv_level.prop",
+        getvar("s_uv_lvl1"), "", 1,
+        getvar("s_uv_lvl2"), "", 0,
+        getvar("s_uv_lvl3"), "", 0,
+        getvar("s_uv_lvl4"), "", 0,
+        getvar("s_uv_lvl5"), "", 0,
+	getvar("s_uv_lvl6"), "", 0
+);
+# Uv for p cores
+    selectbox(
+        "\n\n<@center>" + getvar("s_pcpu_uv") + "</@>",
+        "<@center>\n\n\n\n\n\n\n\n" + getvar("s_pcpu_uv_note") + "\n</@>",
+        "",
+	"pcpu_uv_level.prop",
+	getvar("s_uv_lvl1"), "", 1,
+        getvar("s_uv_lvl2"), "", 0,
+        getvar("s_uv_lvl3"), "", 0,
+        getvar("s_uv_lvl4"), "", 0,
+        getvar("s_uv_lvl5"), "", 0,
+	getvar("s_uv_lvl6"), "", 0
+);
+
+endif;
+# Uv select end
+
+# Energy model
+selectbox(
+    "\n\n<@center>" + getvar("s_em") + "</@>",
+    "<@center>\n\n\n\n\n\n\n\n" + getvar("s_em_1") + "\n</@>",
+    "",
+    "energy_model.prop",
+    getvar("s_em_s1"), "", 1,
+    getvar("s_em_s2"), "", 0,
+    getvar("s_em_s3"), getvar("s_em_s3_sub"), 0,
+    getvar("s_em_s4"), "", 0
+);
+
+if prop("is_oc.prop", "selected.0") == "1" && prop("energy_model.prop", "selected.0") == 3 then
+    alert(
+        getvar("s_error"),
+        getvar("s_em_s_na"),
+        "@trash",
+        getvar("s_ok")
+    );
+    back(1);
+endif;
+# Energy model end
+
+# Properties over, Installation
+menubox(
+    "\n\n<@center>" + getvar("s_ready") + "</@>",
+    "<@center>\n\n\n\n\n\n\n\n" + getvar("s_ready_con") + "\n</@>",
+    "",
+    "menu.prop",
+    getvar("pa_ready_ins") + ini_get("kernel_name") + " " + ini_get("kernel_version"), "", "@install",
+    getvar("s_abort"), "", "@trash",
+    getvar("s_wipe_cache_t"), "", "@action",
+    " ", "", ""
+);
+
+prop("menu.prop", "selected") == "2" && exit("");
+
+if prop("menu.prop", "selected") == "3" then
+    if confirm(
+        getvar("s_warning"),
+        getvar("s_wipe_cache_w"),
+        "@warning") == "yes"
+    then
+        pleasewait(getvar("s_plswait"));
+        resexec("wipe_dalvik_cache.sh");
+        alert(
+            getvar("s_done"),
+            getvar("s_wipe_cache_d"),
+            "@done",
+            getvar("s_ok")
+        );
+    endif;
+    back("1");
+endif;
+
+if prop("menu.prop", "selected") == "4" then
+    if readtmpfile("darkness") == "4" then
+        writetmpfile("darkness", "0");
+        textbox(
+            "Meanwhile...",
+            "Abandoned in the void of nothingness",
+            "",
+            resread("Darkness.txt")
+        );
+        back("2");
+    else
+        writetmpfile("darkness", cal(readtmpfile("darkness") || "0", "+", "1"));
+    endif;
+    back("1");
+endif;
+
+setvar("retstatus", install(
+    "<@center>\n" + getvar("s_installing") + "</@>",
+    "<@center>\n" + getvar("s_installing_1") + "</@>",
+    "")
+);
+
+ini_set("text_next", getvar("pa_finish"));
+
+if getvar("retstatus") == "0" then
+    checkviewbox(
+	getvar("s_ins_finish"),
+        "<#selectbg_g>" + getvar("s_ins_finish_1") + "</#>\n\n" +
+        "" + ini_get("kernel_name") + " " + getvar("s_ins_finish_2") + "\n\n" +
+        getvar("s_exit_code") + getvar("retstatus") + "\n\n",
+        "@welcome",
+        getvar("s_reboot"),
+        "0",
+        "reboot_it"
+    );
+else
+    viewbox(
+        getvar("s_ins_failed"),
+        "\n" + getvar("pa_exit_code") + getvar("retstatus"),
+        "@warning"
+    );
+endif;
+
+getvar("reboot_it") == "1" && reboot("onfinish");
+# End
