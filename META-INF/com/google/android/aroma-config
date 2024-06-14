@@ -150,6 +150,19 @@ if prop("lang.prop", "selected") == "2" then
         setvar("s_uv_yes",	 "Ya, saya membutuhkannya!");
         setvar("s_uv_warning",	 "Jika perangkat rusak atau data hilang karena UV, pengembang San-Kernel tidak bertanggung jawab!");
 
+	setvar("s_zram_con",	 "Perlu mengkonfigurasi ukuran zram?");
+        setvar("s_init_warning", "Ini akan mengedit init.rc agar perubahannya terlihat, Anda tidak dapat mengembalikannya lagi tanpa melakukan reflash San-Kernel/OS. Pengembang San-Kernel tidak bertanggung jawab atas sistem yang dirusak!");
+        setvar("s_zram",	 "Konfigurasi Zram!");
+        setvar("s_zram_no",	 "Tidak, Tidak ingin mengubah ukuran zram");
+        setvar("s_zram_yes",	 "Ya, saya perlu mengkonfigurasi ulang ukuran zram");                                                                                                                                                                             setvar("s_zram_note1", "Zram adalah blok memori terkompresi yang berada di dalam ram");
+        setvar("s_zram_note2",	 "Mengalokasikan lebih banyak zram hanya sia-sia");
+        setvar("s_zram_s1",	 "Default (Mungkin 2GB bervariasi tergantung konfigurasi sistem)");
+        setvar("s_zram_s2",	 "2.5GB (Bagus!)");
+        setvar("s_zram_s3",	 "3GB (ideal untuk Android 14 di perangkat 4GB)");
+        setvar("s_zram_s4",	 "3.5GB (Disarankan!)");
+        setvar("s_zram_s5",	 "4.5GB (berlebihan!)");
+        setvar("s_zram_s6",	 "6GB (Tidak disarankan!)");
+
 	setvar("s_em",		 "Pilih model energi EAS");
         setvar("s_em_1",	 "Catatan: Defaultnya adalah model energi \"CAF\".\nTetap default jika Anda tidak tahu tentang model energi.");
         setvar("s_em_s1",	 "CAF (Dari Qualcomm, dirancang untuk sdm660)");
