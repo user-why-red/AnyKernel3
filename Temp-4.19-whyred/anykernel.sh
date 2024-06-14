@@ -92,6 +92,9 @@ dtb_img=${home}/kernel.dtb
 set_progress 0.3
 # extract Image and dtb end
 
+# Check tmp path if exists to verify encryption status
+TMP="/data/local/tmp"
+
 # Read value by user selected from aroma prop files
 cpu_oc=$(aroma_get_value cpu_oc)
 gpu_oc=$(aroma_get_value gpu_oc)
@@ -179,6 +182,8 @@ sync
 # Zram
 if [ "$zram_confirm" == "2" ]; then
 
+	if [ -d "$TMP" ]; then
+
 	ui_print "- Applying zram changes..."
 	size=$(parse_zram_size $zram_size)
 	ui_print "- Mounting /system to edit init.rc"
@@ -210,6 +215,10 @@ if [ "$zram_confirm" == "2" ]; then
 	ui_print "- Done, unmounting /system..."
         mount -o ro,remount /system_root
         umount /system_root
+
+	else
+                ui_print "OS has /data partition encrypted, sorry you cant use this feature by this way!"
+        fi
 fi
 # Zram end
 
