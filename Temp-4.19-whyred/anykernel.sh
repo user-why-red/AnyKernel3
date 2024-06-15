@@ -186,18 +186,20 @@ if [ "$zram_confirm" == "2" ]; then
 
 	ui_print "- Applying zram changes..."
 	size=$(parse_zram_size $zram_size)
-	ui_print "- Mounting /system to edit init.rc"
+	ui_print "- Mounting /system to edit init.rc..."
         mount /system_root
         mount -o rw,remount /system_root
+	ui_print "- Successfully mounted /system!"
 	mkdir -p /data/local/tmp/san-kernel-backup
 	backup="/data/local/tmp/san-kernel-backup"
-	ui_print "- Making backup of stock init.rc to /data/local/tmp/san-kernel-backup/init.rc"
+	ui_print "- Making backup of stock init.rc to /data/local/tmp/san-kernel-backup/init.rc..."
 	if [ -f "$backup/init.rc" ]; then
 		ui_print "- Init backup already found, using it..."
 		cp "$backup/init.rc" /system_root/system/etc/init/hw/init.rc
 		ui_print "- Writing new zram size..."
 		echo "on boot" >> /system_root/system/etc/init/hw/init.rc
 		echo "	write /sys/block/zram0/disksize $size" >> /system_root/system/etc/init/hw/init.rc
+		ui_print "- Zram is resized to $zram_size"
 	else
 		ui_print "- Fresh installation detected!, creating init backup..."
 		cp /system_root/system/etc/init/hw/init.rc "$backup/init.rc"
@@ -205,11 +207,12 @@ if [ "$zram_confirm" == "2" ]; then
 		ui_print "- Writing new zram size..."
                 echo "on boot" >> /system_root/system/etc/init/hw/init.rc
                 echo "  write /sys/block/zram0/disksize $size" >> /system_root/system/etc/init/hw/init.rc
+		ui_print "- Zram is resized to $zram_size"
 	fi
 
 	if [ "$zram_size" == "1" ]; then
 		ui_print "- Resetting zram to default size..."
-		ui_print "- Restoring backup init..."
+		ui_print "- Restoring init from backup..."
 		cp "$backup/init.rc" /system_root/system/etc/init/hw/init.rc
 	fi
 	ui_print "- Done, unmounting /system..."
