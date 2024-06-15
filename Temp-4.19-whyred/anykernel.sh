@@ -154,6 +154,8 @@ if [ "$uv_confirm" == "2" ]; then
     pcpu_uv=$(parse_uv_level $pcpu_uv_level)
     [ "$ecpu_uv" != "0" ]  && ${bin}/fdtput $dtb_img /soc/cprh-ctrl@179c8000/thread@0/regulator qcom,custom-voltage-reduce $ecpu_uv -tu
     [ "$pcpu_uv" != "0" ] && ${bin}/fdtput $dtb_img /soc/cprh-ctrl@179c4000/thread@0/regulator qcom,custom-voltage-reduce $pcpu_uv -tu
+    ui_print "- $ecpu_uv mV is reduced for LITTLE-cluster"
+    ui_print "- $pcpu_uv mV is reduced for BIG-cluster"
     sync
 fi
 set_progress 0.3
