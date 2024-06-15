@@ -71,7 +71,7 @@ if prop("lang.prop", "selected") == "1" then
 	setvar("s_zram",         "Zram Configuration!");
 	setvar("s_zram_no",      "No, Dont want to modify zram size");
 	setvar("s_zram_yes",     "Yes, i need to reconfigure zram size");
-	setvar("s_zram_note1",   "Zram is a compressed block of memory resides inside ram");
+	setvar("s_zram_note1",   "ZRAM is a feature in Linux that uses part of your RAM as compressed swap space, which means it can store more data in memory and access it quickly. This helps improve performance, especially on devices with limited memory.");
 	setvar("s_zram_note2",   "Allocating more zram is just waste");
 	setvar("s_zram_s1",      "Default (Probably 2GB varies by system configuration)");
 	setvar("s_zram_s2",      "2.5GB (Good!)");
@@ -155,6 +155,7 @@ if prop("lang.prop", "selected") == "2" then
         setvar("s_zram",	 "Konfigurasi Zram!");
         setvar("s_zram_no",	 "Tidak, Tidak ingin mengubah ukuran zram");
         setvar("s_zram_yes",	 "Ya, saya perlu mengkonfigurasi ulang ukuran zram");                                                                                                                                                                             setvar("s_zram_note1", "Zram adalah blok memori terkompresi yang berada di dalam ram");
+	setvar("s_zram_note1",   "ZRAM adalah fitur di Linux yang menggunakan sebagian RAM sebagai ruang swap terkompresi, sehingga dapat menyimpan lebih banyak data di memori dan mengaksesnya dengan cepat. Ini membantu meningkatkan kinerja, terutama pada perangkat dengan memori terbatas.");
         setvar("s_zram_note2",	 "Mengalokasikan lebih banyak zram hanya sia-sia");
         setvar("s_zram_s1",	 "Default (Mungkin 2GB bervariasi tergantung konfigurasi sistem)");
         setvar("s_zram_s2",	 "2.5GB (Bagus!)");
