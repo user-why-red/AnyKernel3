@@ -79,12 +79,17 @@ if prop("lang.prop", "selected") == "1" then
 	setvar("s_ecpu_uv_note", "Note: The efficiency cores (LITTLE) focuses more on battery saving, it's suitable for the daily tasks of the device.");
 	setvar("s_pcpu_uv",      "Select UV level of the performance cores");
 	setvar("s_pcpu_uv_note", "Note: The performance cores (BIG) focuses more on performance, it's suitable for gaming.");
-	setvar("s_uv_lvl1",       "No UV (default)");
-	setvar("s_uv_lvl2",       "20 mV");
-	setvar("s_uv_lvl3",       "40 mV");
-	setvar("s_uv_lvl4",       "80 mV (Stable!)");
-	setvar("s_uv_lvl5",       "100 mV (Unstable!)");
-	setvar("s_uv_lvl6",       "120 mV (Broken!)");
+	setvar("s_uv_lvl1",      "No UV (default)");
+	setvar("s_uv_lvl2",      "20 mV");
+	setvar("s_uv_lvl3",      "40 mV");
+	setvar("s_uv_lvl4",      "80 mV (Stable!)");
+	setvar("s_uv_lvl5",      "100 mV (Unstable!)");
+	setvar("s_uv_lvl6",      "120 mV (Broken!)");
+
+	setvar("s_hbutton",      "Select headphone button mode");
+	setvar("s_hbutton_note", "Select alternative one if the wired headphone buttons not working properly");
+	setvar("s_hbutton_n",    "Normal mode (For most roms)");
+	setvar("s_hbutton_a",    "Alternative mode (For few roms)");
 
 	setvar("s_wipe_cache_t", "Wipe dalvik-cache & cache");
 	setvar("s_wipe_cache_w", "Do not do this if you don't know\nwhat are you doing!\n\nContinue?");
@@ -144,6 +149,11 @@ if prop("lang.prop", "selected") == "2" then
         setvar("s_em_s3_sub",	 "Catatan: Tidak tersedia jika Anda mengaktifkan overclock");
         setvar("s_em_s4",	 "Hypeartist (Dihitung oleh hyperartist)");
         setvar("s_em_s_na",	 "Model energi ini tidak tersedia,\nsilakan pilih yang lain.");
+
+	setvar("s_hbutton",      "Pilih mode tombol headphone");
+	setvar("s_hbutton_note", "Pilih alternatif jika tombol headphone berkabel tidak berfungsi dengan benar");
+        setvar("s_hbutton_n",    "Mode normal (Untuk sebagian besar ROM)");
+	setvar("s_hbutton_a",    "Mode alternatif (Untuk beberapa ROM)");
 
 	setvar("s_ecpu_uv",	 "Pilih tingkat UV inti daya");
 	setvar("s_ecpu_uv_note", "Catatan: Inti daya (LITTLE) lebih berfokus pada penghematan baterai, cocok untuk tugas sehari-hari perangkat.");
@@ -272,6 +282,17 @@ if prop("uv_confirm.prop", "selected.0") == "2" then
 
 endif;
 # Uv select end
+
+# Wired headphone button mode
+selectbox(
+    "\n\n<@center>" + getvar("s_hbutton") + "</@>",
+    "<@center>\n\n\n\n\n\n\n\n" + getvar("s_hbutton_note") + "\n</@>",
+    "",
+    "hbutton.prop",
+    getvar("s_hbutton_n"), "", 0,
+    getvar("s_hbutton_a"), "", 1
+);
+# Wired headphone button mode
 
 # Energy model
 selectbox(

@@ -80,6 +80,7 @@ set_progress 0.3
 # Read value by user selected from aroma prop files
 cpu_oc=$(aroma_get_value cpu_oc)
 gpu_oc=$(aroma_get_value gpu_oc)
+hbutton=$(aroma_get_value hbutton)
 uv_confirm=$(aroma_get_value uv_confirm)
 ecpu_uv_level=$(aroma_get_value ecpu_uv_level)
 pcpu_uv_level=$(aroma_get_value pcpu_uv_level)
@@ -158,6 +159,16 @@ else
 fi
 sync
 # GPU oc end
+
+# Wired headphone button mode
+if [ "$hbutton" == "2" ]
+	ui_print "- Applying headphone alternative button mode"
+	patch_cmdline "androidboot.wiredbtnaltmode" "androidboot.wiredbtnaltmode=1"
+else
+	ui_print "- Applying headphone default button mode"
+	patch_cmdline "androidboot.wiredbtnaltmode" "androidboot.wiredbtnaltmode=0"
+fi
+# Wired headphone button mode
 
 # We are not really modifying ramdisk
 cp -f $dtb_img ${split_img}/kernel_dtb
