@@ -63,22 +63,7 @@ parse_uv_level() {
     *) echo 0;;
   esac
 }
-
 # Input UV lvl end
-
-# Parse zram size
-# 1 is default, so no need to modify init.rc
-parse_zram_size() {
-  case "$1" in
-    "2") echo 2684354560;;  # 2.5GB
-    "3") echo 3211225472;;  # 3GB
-    "4") echo 3851436032;;  # 3.5GB
-    "5") echo 4820892928;; # 4.5GB
-    "6") echo 6442450944;; # 6GB
-    *) echo 2147483648;;
-  esac
-}
-# Parse zram size end
 
 # AnyKernel split boot install
 split_boot;
@@ -92,15 +77,10 @@ dtb_img=${home}/kernel.dtb
 set_progress 0.3
 # extract Image and dtb end
 
-# Check tmp path if exists to verify encryption status
-TMP="/data/local/tmp"
-
 # Read value by user selected from aroma prop files
 cpu_oc=$(aroma_get_value cpu_oc)
 gpu_oc=$(aroma_get_value gpu_oc)
-zram_size=$(aroma_get_value zram_size)
 uv_confirm=$(aroma_get_value uv_confirm)
-zram_confirm=$(aroma_get_value zram_confirm)
 ecpu_uv_level=$(aroma_get_value ecpu_uv_level)
 pcpu_uv_level=$(aroma_get_value pcpu_uv_level)
 energy_model=$(aroma_get_value energy_model)
@@ -180,52 +160,6 @@ else
 fi
 sync
 # GPU oc end
-
-# Zram
-if [ "$zram_confirm" == "2" ]; then
-
-	if [ -d "$TMP" ]; then
-
-	ui_print "- Applying zram changes..."
-	size=$(parse_zram_size $zram_size)
-	ui_print "- Mounting /system to edit init.rc..."
-        mount /system_root
-        mount -o rw,remount /system_root
-	ui_print "- Successfully mounted /system!"
-	mkdir -p /data/local/tmp/san-kernel-backup
-	backup="/data/local/tmp/san-kernel-backup"
-	ui_print "- Making backup of stock init.rc to /data/local/tmp/san-kernel-backup/init.rc..."
-	if [ -f "$backup/init.rc" ]; then
-		ui_print "- Init backup already found, using it..."
-		cp "$backup/init.rc" /system_root/system/etc/init/hw/init.rc
-		ui_print "- Writing new zram size..."
-		echo "on boot" >> /system_root/system/etc/init/hw/init.rc
-		echo "	write /sys/block/zram0/disksize $size" >> /system_root/system/etc/init/hw/init.rc
-		ui_print "- Zram is resized to $zram_size"
-	else
-		ui_print "- Fresh installation detected!, creating init backup..."
-		cp /system_root/system/etc/init/hw/init.rc "$backup/init.rc"
-		cp "$backup/init.rc" /system_root/system/etc/init/hw/init.rc
-		ui_print "- Writing new zram size..."
-                echo "on boot" >> /system_root/system/etc/init/hw/init.rc
-                echo "  write /sys/block/zram0/disksize $size" >> /system_root/system/etc/init/hw/init.rc
-		ui_print "- Zram is resized to $zram_size"
-	fi
-
-	if [ "$zram_size" == "1" ]; then
-		ui_print "- Resetting zram to default size..."
-		ui_print "- Restoring init from backup..."
-		cp "$backup/init.rc" /system_root/system/etc/init/hw/init.rc
-	fi
-	ui_print "- Done, unmounting /system..."
-        mount -o ro,remount /system_root
-        umount /system_root
-
-	else
-                ui_print "OS has /data partition encrypted, sorry you cant use this feature by this way!"
-        fi
-fi
-# Zram end
 
 # We are not really modifying ramdisk
 cp -f $dtb_img ${split_img}/kernel_dtb

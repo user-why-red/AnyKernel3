@@ -66,20 +66,6 @@ if prop("lang.prop", "selected") == "1" then
         setvar("s_uv_yes",       "Yes, I need it!");
         setvar("s_uv_warning",   "If the device is damaged or data is lost due to UV, developer of San-Kernel is not responsible for it!");
 
-	setvar("s_zram_con",     "Need to configure zram size?");
-	setvar("s_init_warning", "This will edit init.rc to get the changes reflected, you cant revert this again without reflashing San-Kernel/OS.Developer of San-Kernel is not responsible for any tampered system!");
-	setvar("s_zram",         "Zram Configuration!");
-	setvar("s_zram_no",      "No, Dont want to modify zram size");
-	setvar("s_zram_yes",     "Yes, i need to reconfigure zram size");
-	setvar("s_zram_note1",   "ZRAM is a feature in Linux that uses part of your RAM as compressed swap space, which means it can store more data in memory and access it quickly. This helps improve performance, especially on devices with limited memory.");
-	setvar("s_zram_note2",   "Allocating more zram is just waste");
-	setvar("s_zram_s1",      "Default (Probably 2GB varies by system configuration)");
-	setvar("s_zram_s2",      "2.5GB (Good!)");
-	setvar("s_zram_s3",      "3GB (ideal for android 14 in 4GB device)");
-	setvar("s_zram_s4",      "3.5GB (Recommended!)");
-	setvar("s_zram_s5",      "4.5GB (overkill!)");
-	setvar("s_zram_s6",      "6GB (Not recommended!)");
-
 	setvar("s_em",           "Select EAS energy model");
 	setvar("s_em_1",         "Note: The default is \"CAF\" energy model.\nKeep default if you don't know about energy model.");
 	setvar("s_em_s1",        "CAF (From Qualcomm, designed for sdm660)");
@@ -149,20 +135,6 @@ if prop("lang.prop", "selected") == "2" then
         setvar("s_uv_no",	 "Tidak, harap pertahankan voltase default.");
         setvar("s_uv_yes",	 "Ya, saya membutuhkannya!");
         setvar("s_uv_warning",	 "Jika perangkat rusak atau data hilang karena UV, pengembang San-Kernel tidak bertanggung jawab!");
-
-	setvar("s_zram_con",	 "Perlu mengkonfigurasi ukuran zram?");
-        setvar("s_init_warning", "Ini akan mengedit init.rc agar perubahannya terlihat, Anda tidak dapat mengembalikannya lagi tanpa melakukan reflash San-Kernel/OS. Pengembang San-Kernel tidak bertanggung jawab atas sistem yang dirusak!");
-        setvar("s_zram",	 "Konfigurasi Zram!");
-        setvar("s_zram_no",	 "Tidak, Tidak ingin mengubah ukuran zram");
-        setvar("s_zram_yes",	 "Ya, saya perlu mengkonfigurasi ulang ukuran zram");                                                                                                                                                                             setvar("s_zram_note1", "Zram adalah blok memori terkompresi yang berada di dalam ram");
-	setvar("s_zram_note1",   "ZRAM adalah fitur di Linux yang menggunakan sebagian RAM sebagai ruang swap terkompresi, sehingga dapat menyimpan lebih banyak data di memori dan mengaksesnya dengan cepat. Ini membantu meningkatkan kinerja, terutama pada perangkat dengan memori terbatas.");
-        setvar("s_zram_note2",	 "Mengalokasikan lebih banyak zram hanya sia-sia");
-        setvar("s_zram_s1",	 "Default (Mungkin 2GB bervariasi tergantung konfigurasi sistem)");
-        setvar("s_zram_s2",	 "2.5GB (Bagus!)");
-        setvar("s_zram_s3",	 "3GB (ideal untuk Android 14 di perangkat 4GB)");
-        setvar("s_zram_s4",	 "3.5GB (Disarankan!)");
-        setvar("s_zram_s5",	 "4.5GB (berlebihan!)");
-        setvar("s_zram_s6",	 "6GB (Tidak disarankan!)");
 
 	setvar("s_em",		 "Pilih model energi EAS");
         setvar("s_em_1",	 "Catatan: Defaultnya adalah model energi \"CAF\".\nTetap default jika Anda tidak tahu tentang model energi.");
@@ -300,44 +272,6 @@ if prop("uv_confirm.prop", "selected.0") == "2" then
 
 endif;
 # Uv select end
-
-# Zram confirm
-selectbox(
-    "\n\n<@center>" + getvar("s_zram_con") + "</@>",
-    "<@center>\n\n\n\n\n\n\n\n" + getvar("s_zram_note1") + "\n</@>",
-    "",
-    "zram_confirm.prop",
-    getvar("s_zram_no"), "", 1,
-    getvar("s_zram_yes"), "", 0
-);
-# Zram confirm end
-
-# Zram risk
-if prop("zram_confirm.prop", "selected.0") == "2" then
-    alert(
-        getvar("s_warning"),
-        getvar("s_init_warning"),
-        "@warning",
-        getvar("s_text_yes")
-);
-# Zram risk end
-
-# Zram
-selectbox(
-        "\n\n<@center>" + getvar("s_zram") + "</@>",
-        "<@center>\n\n\n\n\n\n\n\n" + getvar("s_zram_note2") + "\n</@>",
-        "",
-        "zram_size.prop",
-        getvar("s_zram_s1"), "", 1,
-        getvar("s_zram_s2"), "", 0,
-        getvar("s_zram_s3"), "", 0,
-        getvar("s_zram_s4"), "", 0,
-        getvar("s_zram_s5"), "", 0,
-        getvar("s_zram_s6"), "", 0
-);
-
-endif;
-# Zram end
 
 # Energy model
 selectbox(
