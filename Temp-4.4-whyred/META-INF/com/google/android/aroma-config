@@ -75,6 +75,16 @@ if prop("lang.prop", "selected") == "1" then
 	setvar("s_em_s4",        "Hypeartist (Calculated by hypeartist)");
 	setvar("s_em_s_na",      "This energy model is not available,\nplease select another.");
 
+	setvar("s_zram",         "Zram Configuration!");
+	setvar("s_zram_note",    "ZRAM is a feature in Linux that uses part of your RAM as compressed swap space, which means it can store more data in memory and access it quickly. This helps improve performance, especially on devices with limited memory.");
+	setvar("s_zram_s1",      "1GB (For light OS!)");
+	setvar("s_zram_s2",      "2GB (Default!)");
+	setvar("s_zram_s3",      "3GB (Recommended!)");
+	setvar("s_zram_s4",      "4GB (Far enough!)");
+	setvar("s_zram_s5",      "5GB (Overkill!)");
+	setvar("s_zram_s6",      "6GB (Not recommended!)");
+	setvar("s_zram_s7",      "Reset (Dont change anything!)");
+
 	setvar("s_ecpu_uv",      "Select UV level of the efficiency cores");
 	setvar("s_ecpu_uv_note", "Note: The efficiency cores (LITTLE) focuses more on battery saving, it's suitable for the daily tasks of the device.");
 	setvar("s_pcpu_uv",      "Select UV level of the performance cores");
@@ -140,6 +150,16 @@ if prop("lang.prop", "selected") == "2" then
         setvar("s_uv_no",	 "Tidak, harap pertahankan voltase default.");
         setvar("s_uv_yes",	 "Ya, saya membutuhkannya!");
         setvar("s_uv_warning",	 "Jika perangkat rusak atau data hilang karena UV, pengembang San-Kernel tidak bertanggung jawab!");
+
+	setvar("s_zram",	 "Konfigurasi Zram!");
+	setvar("s_zram_note",	 "ZRAM adalah fitur di Linux yang menggunakan sebagian RAM Anda sebagai ruang swap terkompresi, yang berarti dapat menyimpan lebih banyak data di memori dan mengaksesnya dengan cepat. Hal ini membantu meningkatkan kinerja, terutama pada perangkat dengan memori terbatas. ");
+        setvar("s_zram_s1",	 "1GB (Untuk OS ringan!)");
+        setvar("s_zram_s2",	 "2GB (Bawaan!)");
+        setvar("s_zram_s3",	 "3GB (Disarankan!)");
+        setvar("s_zram_s4",	 "4GB (Cukup jauh!)");
+        setvar("s_zram_s5",	 "5GB (Berlebihan!)");
+        setvar("s_zram_s6",	 "6GB (Tidak disarankan!)");
+	setvar("s_zram_s7",	 "Reset (Jangan ubah apa pun!)");
 
 	setvar("s_em",		 "Pilih model energi EAS");
         setvar("s_em_1",	 "Catatan: Defaultnya adalah model energi \"CAF\".\nTetap default jika Anda tidak tahu tentang model energi.");
@@ -293,6 +313,23 @@ selectbox(
     getvar("s_hbutton_a"), "", 1
 );
 # Wired headphone button mode
+
+# Zram
+selectbox(
+        "\n\n<@center>" + getvar("s_zram") + "</@>",
+        "<@center>\n\n\n\n\n\n\n\n" + getvar("s_zram_note") + "\n</@>",
+        "",
+        "zram_size.prop",
+        getvar("s_zram_s1"), "", 1,
+        getvar("s_zram_s2"), "", 0,
+        getvar("s_zram_s3"), "", 0,
+        getvar("s_zram_s4"), "", 0,
+        getvar("s_zram_s5"), "", 0,
+	getvar("s_zram_s6"), "", 0,
+	getvar("s_zram_s7"), "", 0
+);
+
+# Zram end
 
 # Energy model
 selectbox(

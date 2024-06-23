@@ -81,6 +81,7 @@ set_progress 0.3
 cpu_oc=$(aroma_get_value cpu_oc)
 gpu_oc=$(aroma_get_value gpu_oc)
 hbutton=$(aroma_get_value hbutton)
+zram_size=$(aroma_get_value zram_size)
 uv_confirm=$(aroma_get_value uv_confirm)
 ecpu_uv_level=$(aroma_get_value ecpu_uv_level)
 pcpu_uv_level=$(aroma_get_value pcpu_uv_level)
@@ -162,12 +163,21 @@ sync
 
 # Wired headphone button mode
 if [ "$hbutton" -eq 2 ]; then
-	ui_print "- Applying headphone alternative button mode"
+	ui_print "- Applying headphone alternative button mode..."
 	patch_cmdline "wired.buttonmode" "wired.buttonmode=1"
 else
 	patch_cmdline "wired.buttonmode" ""
 fi
 # Wired headphone button mode
+
+# Zram
+if [ "$zram_size" -ne 7 ]; then
+	ui_print "- Applying zram changes..."
+	patch_cmdline "zram.resize" "zram.resize=$zram_size"
+else
+	patch_cmdline "zram.resize" ""
+fi
+# Zram end
 
 # We are not really modifying ramdisk
 cp -f $dtb_img ${split_img}/kernel_dtb
