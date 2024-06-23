@@ -143,9 +143,9 @@ set_progress 0.3
 # CPU oc
 if [ "$cpu_oc" -eq 1 ]; then
 	ui_print "- Applying CPU overclock changes..."
-	patch_cmdline "androidboot.cpuoverclock" "androidboot.cpuoverclock=1"
+	patch_cmdline "overclock.cpu" "overclock.cpu=1"
 else
-	patch_cmdline "androidboot.cpuoverclock" ""
+	patch_cmdline "overclock.cpu" ""
 fi
 sync
 # CPU oc end
@@ -163,9 +163,9 @@ sync
 # Wired headphone button mode
 if [ "$hbutton" -eq 2 ]; then
 	ui_print "- Applying headphone alternative button mode"
-	patch_cmdline "androidboot.wiredbtnaltmode" "androidboot.wiredbtnaltmode=1"
+	patch_cmdline "wired.buttonmode" "wired.buttonmode=1"
 else
-	patch_cmdline "androidboot.wiredbtnaltmode" ""
+	patch_cmdline "wired.buttonmode" ""
 fi
 # Wired headphone button mode
 
