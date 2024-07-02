@@ -65,6 +65,20 @@ parse_uv_level() {
 }
 # Input UV lvl end
 
+# Input OV lvl to aroma
+parse_ov_level() {
+  case "$1" in
+    "1") echo 0;;
+    "2") echo 20000;;  # 20 mV
+    "3") echo 40000;;  # 40 mV
+    "4") echo 80000;;  # 80 mV
+    "5") echo 100000;; # 100 mV
+    "6") echo 120000;; # 120 mV
+    *) echo 0;;
+  esac
+}
+# Input OV lvl end
+
 # AnyKernel split boot install
 split_boot;
 # Split boot install end
@@ -82,6 +96,9 @@ cpu_oc=$(aroma_get_value cpu_oc)
 gpu_oc=$(aroma_get_value gpu_oc)
 zram_size=$(aroma_get_value zram_size)
 uv_confirm=$(aroma_get_value uv_confirm)
+ov_confirm=$(aroma_get_value ov_confirm)
+ecpu_ov_level=$(aroma_get_value ecpu_ov_level)
+pcpu_ov_level=$(aroma_get_value pcpu_ov_level)
 ecpu_uv_level=$(aroma_get_value ecpu_uv_level)
 pcpu_uv_level=$(aroma_get_value pcpu_uv_level)
 energy_model=$(aroma_get_value energy_model)
@@ -141,6 +158,20 @@ if [ "$uv_confirm" -eq 2 ]; then
 fi
 set_progress 0.3
 # Apply uv voltages end
+
+# Apply ov voltages
+if [ "$ov_confirm" -eq 2 ]; then
+    ui_print "- Applying OV changes..."
+    ecpu_ov=$(parse_ov_level $ecpu_ov_level)
+    pcpu_ov=$(parse_ov_level $pcpu_ov_level)
+    [ "$ecpu_ov" -ne 0 ]  && ${bin}/fdtput $dtb_img /soc/cprh-ctrl@179c8000/thread@0/regulator qcom,custom-voltage-increase $ecpu_ov -tu
+    [ "$pcpu_ov" -ne 0 ] && ${bin}/fdtput $dtb_img /soc/cprh-ctrl@179c4000/thread@0/regulator qcom,custom-voltage-increase $pcpu_ov -tu
+    ui_print "- $ecpu_ov mV is increased for LITTLE-cluster"
+    ui_print "- $pcpu_ov mV is increased for BIG-cluster"
+    sync
+fi
+set_progress 0.3
+# Apply ov voltages end
 
 # CPU oc
 if [ "$cpu_oc" -eq 1 ]; then

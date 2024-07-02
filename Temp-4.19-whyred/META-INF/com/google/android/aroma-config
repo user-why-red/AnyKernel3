@@ -89,12 +89,29 @@ if prop("lang.prop", "selected") == "1" then
 	setvar("s_ecpu_uv_note", "Note: The efficiency cores (LITTLE) focuses more on battery saving, it's suitable for the daily tasks of the device.");
 	setvar("s_pcpu_uv",      "Select UV level of the performance cores");
 	setvar("s_pcpu_uv_note", "Note: The performance cores (BIG) focuses more on performance, it's suitable for gaming.");
-	setvar("s_uv_lvl1",       "No UV (default)");
-	setvar("s_uv_lvl2",       "20 mV");
-	setvar("s_uv_lvl3",       "40 mV");
-	setvar("s_uv_lvl4",       "80 mV (Stable!)");
-	setvar("s_uv_lvl5",       "100 mV (Unstable!)");
-	setvar("s_uv_lvl6",       "120 mV (Broken!)");
+	setvar("s_uv_lvl1",      "No UV (default)");
+	setvar("s_uv_lvl2",      "20 mV");
+	setvar("s_uv_lvl3",      "40 mV");
+	setvar("s_uv_lvl4",      "80 mV (Stable!)");
+	setvar("s_uv_lvl5",      "100 mV (Unstable!)");
+	setvar("s_uv_lvl6",      "120 mV (Broken!)");
+
+        setvar("s_ov",           "Need OV?\nIf you previously configured undervolting voltages, It will be re-calculated according to the overvolting voltage.");
+        setvar("s_ov_note",      "Note: Increasing the voltage can improve performance, but excessive voltage boosting will cause device instability!\n(not booting, randomly reboot, Nuclear blast, abnormal display)\nAt this point you need to reflash this kernel and lower the OV level.");
+        setvar("s_ov_no",        "No, please keep default voltage.");
+        setvar("s_ov_yes",       "Yes, I need it!");
+        setvar("s_ov_warning",   "If the device is damaged or data is lost due to OV, developer of San-Kernel is not responsible for it!");
+
+        setvar("s_ecpu_ov",      "Select OV level of the efficiency cores");
+        setvar("s_ecpu_ov_note", "Note: The efficiency cores (LITTLE) focuses more on battery saving, it's suitable for the daily tasks of the device.");
+        setvar("s_pcpu_ov",      "Select OV level of the performance cores");
+        setvar("s_pcpu_ov_note", "Note: The performance cores (BIG) focuses more on performance, it's suitable for gaming.");
+        setvar("s_ov_lvl1",      "No UV (default)");
+        setvar("s_ov_lvl2",      "20 mV");
+        setvar("s_ov_lvl3",      "40 mV");
+        setvar("s_ov_lvl4",      "80 mV (Stable!)");
+        setvar("s_ov_lvl5",      "100 mV (Unstable/Overheat!)");
+        setvar("s_ov_lvl6",      "120 mV (Blast!)");
 
 	setvar("s_wipe_cache_t", "Wipe dalvik-cache & cache");
 	setvar("s_wipe_cache_w", "Do not do this if you don't know\nwhat are you doing!\n\nContinue?");
@@ -175,6 +192,23 @@ if prop("lang.prop", "selected") == "2" then
 	setvar("s_uv_lvl4",	 "80 mV (Stable!)");
 	setvar("s_uv_lvl5",	 "100 mV (Unstable!)");
 	setvar("s_uv_lvl6",      "120 mV (Broken!)");
+
+	setvar("s_ov",		 "Butuh OV?\nJika sebelumnya Anda telah mengkonfigurasi tegangan undervolting, maka akan dihitung ulang berdasarkan tegangan overvolting.");
+        setvar("s_ov_note",	 "Catatan: Meningkatkan tegangan dapat meningkatkan kinerja, tetapi peningkatan tegangan yang berlebihan akan menyebabkan ketidakstabilan perangkat!\n(tidak dapat melakukan booting, reboot secara acak, Ledakan nuklir, tampilan tidak normal)\nPada titik ini Anda perlu melakukan reflash kernel ini dan turunkan level OV.");
+        setvar("s_ov_no",	 "Tidak, harap pertahankan voltase default.");
+        setvar("s_ov_yes",	 "Ya, saya membutuhkannya!");
+        setvar("s_ov_warning",	 "Jika perangkat rusak atau data hilang karena OV, pengembang San-Kernel tidak bertanggung jawab!");
+
+        setvar("s_ecpu_ov",	 "Pilih level OV dari inti efisiensi");
+        setvar("s_ecpu_ov_note", "Catatan: Inti efisiensi (LITTLE) lebih berfokus pada penghematan baterai, cocok untuk tugas sehari-hari perangkat.");
+        setvar("s_pcpu_ov",	 "Pilih level OV dari inti kinerja");
+        setvar("s_pcpu_ov_note", "Catatan: Performance core (BIG) lebih fokus pada performa, cocok untuk bermain game.");
+        setvar("s_ov_lvl1",	 "Tidak Ada UV (default)");
+        setvar("s_ov_lvl2",	 "20 mV");
+        setvar("s_ov_lvl3",	 "40 mV");
+        setvar("s_ov_lvl4",	 "80 mV (Stabil!)");
+        setvar("s_ov_lvl5",	 "100 mV (Tidak Stabil/Terlalu Panas!)");
+        setvar("s_ov_lvl6",	 "120 mV (Ledakan!)");
 
 	setvar("s_wipe_cache_t", "Hapus dalvik-cache & cache");
         setvar("s_wipe_cache_w", "Jangan lakukan ini jika Anda tidak tahu\napa yang Anda lakukan!\n\nLanjutkan?");
@@ -292,6 +326,57 @@ if prop("uv_confirm.prop", "selected.0") == "2" then
 
 endif;
 # Uv select end
+
+# Ov confirm
+selectbox(
+    "\n\n<@center>" + getvar("s_ov") + "</@>",
+    "<@center>\n\n\n\n\n\n\n\n" + getvar("s_ov_note") + "\n</@>",
+    "",
+    "ov_confirm.prop",
+    getvar("s_ov_no"), "", 1,
+    getvar("s_ov_yes"), "", 0
+);
+# Ov confirm end
+
+# Ov risk button
+if prop("ov_confirm.prop", "selected.0") == "2" then
+    alert(
+        getvar("s_warning"),
+        getvar("s_ov_warning"),
+        "@warning",
+        getvar("s_text_yes")
+);
+# Ov risk button end
+
+# Ov for e cores
+    selectbox(
+        "\n\n<@center>" + getvar("s_ecpu_ov") + "</@>",
+        "<@center>\n\n\n\n\n\n\n\n" + getvar("s_ecpu_ov_note") + "\n</@>",
+        "",
+        "ecpu_ov_level.prop",
+        getvar("s_ov_lvl1"), "", 1,
+        getvar("s_ov_lvl2"), "", 0,
+        getvar("s_ov_lvl3"), "", 0,
+        getvar("s_ov_lvl4"), "", 0,
+        getvar("s_ov_lvl5"), "", 0,
+        getvar("s_ov_lvl6"), "", 0
+);
+# Ov for p cores
+    selectbox(
+        "\n\n<@center>" + getvar("s_pcpu_ov") + "</@>",
+        "<@center>\n\n\n\n\n\n\n\n" + getvar("s_pcpu_ov_note") + "\n</@>",
+        "",
+        "pcpu_ov_level.prop",
+        getvar("s_ov_lvl1"), "", 1,
+        getvar("s_ov_lvl2"), "", 0,
+        getvar("s_ov_lvl3"), "", 0,
+        getvar("s_ov_lvl4"), "", 0,
+        getvar("s_ov_lvl5"), "", 0,
+        getvar("s_ov_lvl6"), "", 0
+);
+
+endif;
+# Ov select end
 
 # Zram
 selectbox(
