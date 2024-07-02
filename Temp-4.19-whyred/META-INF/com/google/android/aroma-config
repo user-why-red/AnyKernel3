@@ -60,7 +60,7 @@ if prop("lang.prop", "selected") == "1" then
         setvar("s_oc_gpu_yes",   "Yes (Base: 19Mhz, Max: 585Mhz)");
         setvar("s_oc_gpu_no",    "No (Base: 19Mhz, Max: 430Mhz)");
 
-	setvar("s_uv",           "Need UV?");
+	setvar("s_uv",           "Need UV (Undervolting)?");
         setvar("s_uv_note",      "Note: Reducing the voltage can save battery, but excessive voltage reduction will cause device instability!\n(not booting, randomly reboot, abnormal display)\nAt this point you need to reflash this kernel and lower the UV level.");
         setvar("s_uv_no",        "No, please keep default voltage.");
         setvar("s_uv_yes",       "Yes, I need it!");
@@ -96,7 +96,7 @@ if prop("lang.prop", "selected") == "1" then
 	setvar("s_uv_lvl5",      "100 mV (Unstable!)");
 	setvar("s_uv_lvl6",      "120 mV (Broken!)");
 
-        setvar("s_ov",           "Need OV?");
+        setvar("s_ov",           "Need OV (Overvolting)?");
         setvar("s_ov_note",      "Note: Increasing the voltage can improve performance, but excessive voltage boosting will cause device instability!\n(not booting, randomly reboot, Nuclear blast)\nAt this point you need to reflash this kernel and lower the OV level.");
         setvar("s_ov_no",        "No, please keep default voltage.");
         setvar("s_ov_yes",       "Yes, I need it!");
@@ -106,7 +106,7 @@ if prop("lang.prop", "selected") == "1" then
         setvar("s_ecpu_ov_note", "Note: The efficiency cores (LITTLE) focuses more on battery saving, it's suitable for the daily tasks of the device.");
         setvar("s_pcpu_ov",      "Select OV level of the performance cores");
         setvar("s_pcpu_ov_note", "Note: The performance cores (BIG) focuses more on performance, it's suitable for gaming.");
-        setvar("s_ov_lvl1",      "No UV (default)");
+        setvar("s_ov_lvl1",      "No OV (default)");
         setvar("s_ov_lvl2",      "20 mV");
         setvar("s_ov_lvl3",      "40 mV");
         setvar("s_ov_lvl4",      "80 mV (Stable!)");
@@ -157,7 +157,7 @@ if prop("lang.prop", "selected") == "2" then
         setvar("s_oc_gpu_yes",   "Ya (Basis: 19Mhz, Maks: 585Mhz)");
         setvar("s_oc_gpu_no",	 "Tidak (Basis: 19Mhz, Maks: 430Mhz)");
 
-	setvar("s_uv",		 "Butuh UV?");
+	setvar("s_uv",		 "Butuh UV? (Undervolting)");
         setvar("s_uv_note",	 "Catatan: Mengurangi tegangan dapat menghemat baterai, tetapi pengurangan tegangan yang berlebihan akan menyebabkan ketidakstabilan perangkat!\n(tidak dapat melakukan booting, reboot secara acak, tampilan tidak normal)\nPada titik ini Anda perlu melakukan reflash kernel ini dan menurunkan tingkat UV.");
         setvar("s_uv_no",	 "Tidak, harap pertahankan voltase default.");
         setvar("s_uv_yes",	 "Ya, saya membutuhkannya!");
@@ -193,7 +193,7 @@ if prop("lang.prop", "selected") == "2" then
 	setvar("s_uv_lvl5",	 "100 mV (Unstable!)");
 	setvar("s_uv_lvl6",      "120 mV (Broken!)");
 
-	setvar("s_ov",		 "Butuh OV?");
+	setvar("s_ov",		 "Butuh OV (Overvolting)?");
         setvar("s_ov_note",	 "Catatan: Meningkatkan tegangan dapat meningkatkan kinerja, tetapi peningkatan tegangan yang berlebihan akan menyebabkan ketidakstabilan perangkat!\n(tidak dapat melakukan booting, reboot secara acak, Ledakan nuklir)\nPada titik ini Anda perlu melakukan reflash kernel ini dan turunkan level OV.");
         setvar("s_ov_no",	 "Tidak, harap pertahankan voltase default.");
         setvar("s_ov_yes",	 "Ya, saya membutuhkannya!");
@@ -203,7 +203,7 @@ if prop("lang.prop", "selected") == "2" then
         setvar("s_ecpu_ov_note", "Catatan: Inti efisiensi (LITTLE) lebih berfokus pada penghematan baterai, cocok untuk tugas sehari-hari perangkat.");
         setvar("s_pcpu_ov",	 "Pilih level OV dari inti kinerja");
         setvar("s_pcpu_ov_note", "Catatan: Performance core (BIG) lebih fokus pada performa, cocok untuk bermain game.");
-        setvar("s_ov_lvl1",	 "Tidak Ada UV (default)");
+        setvar("s_ov_lvl1",	 "Tidak Ada OV (default)");
         setvar("s_ov_lvl2",	 "20 mV");
         setvar("s_ov_lvl3",	 "40 mV");
         setvar("s_ov_lvl4",	 "80 mV (Stabil!)");
