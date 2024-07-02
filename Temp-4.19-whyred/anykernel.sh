@@ -173,6 +173,12 @@ fi
 set_progress 0.3
 # Apply ov voltages end
 
+# Print final voltage
+if [ "$uv_confirm" -eq 2 ] && [ "$ov_confirm" -eq 2 ]; then
+    ui_print "- Final voltage = reference voltage - undervoltage + overvoltage"
+fi
+# Final voltage end
+
 # CPU oc
 if [ "$cpu_oc" -eq 1 ]; then
 	ui_print "- Applying CPU overclock changes..."
