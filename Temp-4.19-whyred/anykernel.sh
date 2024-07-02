@@ -145,9 +145,9 @@ set_progress 0.3
 # CPU oc
 if [ "$cpu_oc" -eq 1 ]; then
 	ui_print "- Applying CPU overclock changes..."
-	patch_cmdline "androidboot.cpuoverclock" "androidboot.cpuoverclock=1"
+	patch_cmdline "overclock.cpu" "overclock.cpu=1"
 else
-	patch_cmdline "androidboot.cpuoverclock" ""
+	patch_cmdline "overclock.cpu" ""
 fi
 sync
 # CPU oc end
