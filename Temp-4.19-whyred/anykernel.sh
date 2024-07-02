@@ -89,11 +89,11 @@ energy_model=$(aroma_get_value energy_model)
 
 # Patch EM
 fdt_patch_files=""
-if [ "$energy_model" != "1" ]; then
+if [ "$energy_model" -ne 1 ]; then
     case "$energy_model" in
         "2") {
             ui_print "- Use kdrag0n's EAS energy model (for sdm660)"
-            if [ "$cpu_oc" == "1" ]; then
+            if [ "$cpu_oc" -eq 1 ]; then
 		fdt_patch_files="$fdt_patch_files ${home}/fdt_patches/kdrag0n-energy-model-sdm660-oc.fdtp"
             else
                 fdt_patch_files="$fdt_patch_files ${home}/fdt_patches/kdrag0n-energy-model-sdm660-nooc.fdtp"
@@ -101,12 +101,12 @@ if [ "$energy_model" != "1" ]; then
         };;
         "3") {
             ui_print "- Use kdrag0n's EAS energy model (for sdm636)"
-            [ "$cpu_oc" == "1" ] && abort "! This energy model is not suitable with overclock!"
+            [ "$cpu_oc" -eq 1 ] && abort "! This energy model is not suitable with overclock!"
             fdt_patch_files="$fdt_patch_files ${home}/fdt_patches/kdrag0n-energy-model-sdm636-nooc.fdtp"
         };;
         "4") {
             ui_print "- Use hypeartist's EAS energy model"
-            if [ "$cpu_oc" == "1" ]; then
+            if [ "$cpu_oc" -eq 1 ]; then
                 fdt_patch_files="$fdt_patch_files ${home}/fdt_patches/hypeartist-energy-model-oc.fdtp"
             else
                 fdt_patch_files="$fdt_patch_files ${home}/fdt_patches/hypeartist-energy-model-nooc.fdtp"
@@ -129,12 +129,12 @@ fi
 
 
 # Apply uv voltages
-if [ "$uv_confirm" == "2" ]; then
+if [ "$uv_confirm" -eq 2 ]; then
     ui_print "- Applying UV changes..."
     ecpu_uv=$(parse_uv_level $ecpu_uv_level)
     pcpu_uv=$(parse_uv_level $pcpu_uv_level)
-    [ "$ecpu_uv" != "0" ]  && ${bin}/fdtput $dtb_img /soc/cprh-ctrl@179c8000/thread@0/regulator qcom,custom-voltage-reduce $ecpu_uv -tu
-    [ "$pcpu_uv" != "0" ] && ${bin}/fdtput $dtb_img /soc/cprh-ctrl@179c4000/thread@0/regulator qcom,custom-voltage-reduce $pcpu_uv -tu
+    [ "$ecpu_uv" -ne 0 ]  && ${bin}/fdtput $dtb_img /soc/cprh-ctrl@179c8000/thread@0/regulator qcom,custom-voltage-reduce $ecpu_uv -tu
+    [ "$pcpu_uv" -ne 0 ] && ${bin}/fdtput $dtb_img /soc/cprh-ctrl@179c4000/thread@0/regulator qcom,custom-voltage-reduce $pcpu_uv -tu
     ui_print "- $ecpu_uv mV is reduced for LITTLE-cluster"
     ui_print "- $pcpu_uv mV is reduced for BIG-cluster"
     sync
@@ -143,7 +143,7 @@ set_progress 0.3
 # Apply uv voltages end
 
 # CPU oc
-if [ "$cpu_oc" == "1" ]; then
+if [ "$cpu_oc" -eq 1 ]; then
 	ui_print "- Applying CPU overclock changes..."
 	patch_cmdline "androidboot.cpuoverclock" "androidboot.cpuoverclock=1"
 else
@@ -153,7 +153,7 @@ sync
 # CPU oc end
 
 #GPU oc
-if [ "$gpu_oc" == "1" ]; then
+if [ "$gpu_oc" -eq 1 ]; then
 	ui_print "- Applying GPU overclock changes..."
         patch_cmdline "overclock.gpu" "overclock.gpu=1"
 else

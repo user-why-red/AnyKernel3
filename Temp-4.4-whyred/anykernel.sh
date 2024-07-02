@@ -94,7 +94,7 @@ if [ "$energy_model" -ne 1 ]; then
     case "$energy_model" in
         "2") {
             ui_print "- Use kdrag0n's EAS energy model (for sdm660)"
-            if [ "$cpu_oc" == "1" ]; then
+            if [ "$cpu_oc" -eq 1 ]; then
 		fdt_patch_files="$fdt_patch_files ${home}/fdt_patches/kdrag0n-energy-model-sdm660-oc.fdtp"
             else
                 fdt_patch_files="$fdt_patch_files ${home}/fdt_patches/kdrag0n-energy-model-sdm660-nooc.fdtp"
@@ -102,12 +102,12 @@ if [ "$energy_model" -ne 1 ]; then
         };;
         "3") {
             ui_print "- Use kdrag0n's EAS energy model (for sdm636)"
-            [ "$cpu_oc" == "1" ] && abort "! This energy model is not suitable with overclock!"
+            [ "$cpu_oc" -eq 1 ] && abort "! This energy model is not suitable with overclock!"
             fdt_patch_files="$fdt_patch_files ${home}/fdt_patches/kdrag0n-energy-model-sdm636-nooc.fdtp"
         };;
         "4") {
             ui_print "- Use hypeartist's EAS energy model"
-            if [ "$cpu_oc" == "1" ]; then
+            if [ "$cpu_oc" -eq 1 ]; then
                 fdt_patch_files="$fdt_patch_files ${home}/fdt_patches/hypeartist-energy-model-oc.fdtp"
             else
                 fdt_patch_files="$fdt_patch_files ${home}/fdt_patches/hypeartist-energy-model-nooc.fdtp"
