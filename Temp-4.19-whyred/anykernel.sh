@@ -80,6 +80,7 @@ set_progress 0.3
 # Read value by user selected from aroma prop files
 cpu_oc=$(aroma_get_value cpu_oc)
 gpu_oc=$(aroma_get_value gpu_oc)
+zram_size=$(aroma_get_value zram_size)
 uv_confirm=$(aroma_get_value uv_confirm)
 ecpu_uv_level=$(aroma_get_value ecpu_uv_level)
 pcpu_uv_level=$(aroma_get_value pcpu_uv_level)
@@ -160,6 +161,15 @@ else
 fi
 sync
 # GPU oc end
+
+# Zram
+if [ "$zram_size" -ne 7 ]; then
+        ui_print "- Applying zram changes..."
+        patch_cmdline "zram.resize" "zram.resize=$zram_size"
+else
+        patch_cmdline "zram.resize" ""
+fi
+# Zram end
 
 # We are not really modifying ramdisk
 cp -f $dtb_img ${split_img}/kernel_dtb
