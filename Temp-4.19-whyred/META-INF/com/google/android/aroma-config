@@ -52,8 +52,9 @@ if prop("lang.prop", "selected") == "1" then
 	
 	setvar("s_oc",           "Need to overclock CPU?");
 	setvar("s_oc_note",      "Note: Choose \"yes\" if you need best performance and gaming\n& don't care about CPU life and battery life.\n\nBeware of overheat and high electricity bill");
-	setvar("s_oc_yes",       "Yes (BIG: 1113-2208 MHz, LITTLE: 633-1843 MHz)");
-	setvar("s_oc_no",        "No (BIG: 1113-1843 MHz, LITTLE: 633-1612 MHz)");
+	setvar("s_oc_std",       "Yes(Standard) (BIG: 1113-2208 MHz, LITTLE: 633-1843 MHz)");
+        setvar("s_oc_def",       "No(Default) (BIG: 1113-1843 MHz, LITTLE: 633-1612 MHz)");
+        setvar("s_oc_hyp",       "Yes(Hyper) (BIG: 1113-2457 MHz, LITTLE: 633-1843 MHz)");
 
 	setvar("s_oc_gpu",       "Need to overclock GPU?");
 	setvar("s_oc_gpu_note",  "Note: Choose \"yes\" if you need best performance and gaming\n& don't care about GPU life and battery life.\n\nBeware of overheat and high electricity bill");
@@ -149,8 +150,9 @@ if prop("lang.prop", "selected") == "2" then
 
 	setvar("s_oc",           "Perlu melakukan overclock CPU?");
         setvar("s_oc_note",      "Catatan: Pilih \"ya\" jika Anda menginginkan performa dan permainan terbaik\n& tidak peduli dengan masa pakai CPU dan masa pakai baterai.\n\nHati-hati terhadap panas berlebih dan tagihan listrik yang tinggi");
-        setvar("s_oc_yes",       "Ya (BESAR: 1113-2208 MHz, KECIL: 633-1843 MHz)");
-        setvar("s_oc_no",        "Tidak (BESAR: 1113-1843 MHz, KECIL: 633-1612 MHz)");
+        setvar("s_oc_std",	 "Ya(Standar) (BESAR: 1113-2208 MHz, KECIL: 633-1843 MHz)");
+        setvar("s_oc_def",	 "Tidak(Default) (BESAR: 1113-1843 MHz, KECIL: 633-1612 MHz)");
+        setvar("s_oc_hyp",	 "Ya(Hyper) (BESAR: 1113-2457 MHz, KECIL: 633-1843 MHz)");
 
 	setvar("s_oc_gpu",	 "Perlu melakukan overclock GPU?");
         setvar("s_oc_gpu_note",  "Catatan: Pilih \"ya\" jika Anda memerlukan performa dan permainan terbaik\n& tidak peduli dengan masa pakai GPU dan masa pakai baterai.\n\nWaspadalah terhadap panas berlebih dan tagihan listrik yang tinggi");
@@ -260,8 +262,9 @@ selectbox(
     "<@center>\n\n\n\n\n\n\n\n" + getvar("s_oc_note") + "\n</@>",
     "",
     "cpu_oc.prop",
-    getvar("s_oc_yes"), "", 0,
-    getvar("s_oc_no"), "", 1
+    getvar("s_oc_std"), "", 0,
+    getvar("s_oc_hyp"), "", 1,
+    getvar("s_oc_def"), "", 1
 );	        
 # CPU oc end
 

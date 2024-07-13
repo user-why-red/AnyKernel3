@@ -181,8 +181,13 @@ fi
 
 # CPU oc
 if [ "$cpu_oc" -eq 1 ]; then
-	ui_print "- Applying CPU overclock changes..."
-	patch_cmdline "overclock.cpu" "overclock.cpu=1"
+        ui_print "- Applying CPU overclock changes..."
+        ui_print "- CPU is overclocked to 2.2Ghz"
+        patch_cmdline "overclock.cpu" "overclock.cpu=1"
+elif [ "$cpu_oc" -eq 2 ]; then
+        ui_print "- Applying CPU overclock changes..."
+        ui_print "- CPU is overclocked to 2.4Ghz"
+        patch_cmdline "overclock.cpu" "overclock.cpu=2"
 else
 	patch_cmdline "overclock.cpu" ""
 fi
