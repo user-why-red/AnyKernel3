@@ -152,8 +152,8 @@ if [ "$uv_confirm" -eq 2 ]; then
     pcpu_uv=$(parse_uv_level $pcpu_uv_level)
     [ "$ecpu_uv" -ne 0 ]  && ${bin}/fdtput $dtb_img /soc/cprh-ctrl@179c8000/thread@0/regulator qcom,custom-voltage-reduce $ecpu_uv -tu
     [ "$pcpu_uv" -ne 0 ] && ${bin}/fdtput $dtb_img /soc/cprh-ctrl@179c4000/thread@0/regulator qcom,custom-voltage-reduce $pcpu_uv -tu
-    ui_print "- $ecpu_uv mV is reduced for LITTLE-cluster"
-    ui_print "- $pcpu_uv mV is reduced for BIG-cluster"
+    ui_print "- $ecpu_uv mV is reduced for LITTLE-cluster!"
+    ui_print "- $pcpu_uv mV is reduced for BIG-cluster!"
     sync
 fi
 set_progress 0.3
@@ -166,8 +166,8 @@ if [ "$ov_confirm" -eq 2 ]; then
     pcpu_ov=$(parse_ov_level $pcpu_ov_level)
     [ "$ecpu_ov" -ne 0 ]  && ${bin}/fdtput $dtb_img /soc/cprh-ctrl@179c8000/thread@0/regulator qcom,custom-voltage-increase $ecpu_ov -tu
     [ "$pcpu_ov" -ne 0 ] && ${bin}/fdtput $dtb_img /soc/cprh-ctrl@179c4000/thread@0/regulator qcom,custom-voltage-increase $pcpu_ov -tu
-    ui_print "- $ecpu_ov mV is increased for LITTLE-cluster"
-    ui_print "- $pcpu_ov mV is increased for BIG-cluster"
+    ui_print "- $ecpu_ov mV is increased for LITTLE-cluster!"
+    ui_print "- $pcpu_ov mV is increased for BIG-cluster!"
     sync
 fi
 set_progress 0.3
@@ -175,18 +175,18 @@ set_progress 0.3
 
 # Print final voltage
 if [ "$uv_confirm" -eq 2 ] && [ "$ov_confirm" -eq 2 ]; then
-    ui_print "- Final voltage = reference voltage - undervoltage + overvoltage"
+    ui_print "- Final voltage = reference voltage - undervoltage + overvoltage."
 fi
 # Final voltage end
 
 # CPU oc
 if [ "$cpu_oc" -eq 1 ]; then
         ui_print "- Applying CPU overclock changes..."
-        ui_print "- CPU is overclocked to 2.2Ghz"
+        ui_print "- CPU is overclocked to 2.2Ghz!"
         patch_cmdline "overclock.cpu" "overclock.cpu=1"
 elif [ "$cpu_oc" -eq 2 ]; then
         ui_print "- Applying CPU overclock changes..."
-        ui_print "- CPU is overclocked to 2.4Ghz"
+        ui_print "- CPU is overclocked to 2.4Ghz!"
         patch_cmdline "overclock.cpu" "overclock.cpu=2"
 else
 	patch_cmdline "overclock.cpu" ""
@@ -197,6 +197,7 @@ sync
 #GPU oc
 if [ "$gpu_oc" -eq 1 ]; then
 	ui_print "- Applying GPU overclock changes..."
+	ui_print "- GPU is overclocked to 585Mhz!"
         patch_cmdline "overclock.gpu" "overclock.gpu=1"
 else
         patch_cmdline "overclock.gpu" ""
@@ -207,6 +208,7 @@ sync
 # Zram
 if [ "$zram_size" -ne 7 ]; then
         ui_print "- Applying zram changes..."
+	ui_print "- ZRAM is resized to $zram_size !"
         patch_cmdline "zram.resize" "zram.resize=$zram_size"
 else
         patch_cmdline "zram.resize" ""
