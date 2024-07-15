@@ -152,8 +152,8 @@ if [ "$uv_confirm" -eq 2 ]; then
     pcpu_uv=$(parse_uv_level $pcpu_uv_level)
     [ "$ecpu_uv" -ne 0 ]  && ${bin}/fdtput $dtb_img /soc/cprh-ctrl@179c8000/thread@0/regulator qcom,custom-voltage-reduce $ecpu_uv -tu
     [ "$pcpu_uv" -ne 0 ] && ${bin}/fdtput $dtb_img /soc/cprh-ctrl@179c4000/thread@0/regulator qcom,custom-voltage-reduce $pcpu_uv -tu
-    ui_print "- $ecpu_uv mV is reduced for LITTLE-cluster!"
-    ui_print "- $pcpu_uv mV is reduced for BIG-cluster!"
+    ui_print "- $ecpu_uv uV is reduced for LITTLE-cluster!"
+    ui_print "- $pcpu_uv uV is reduced for BIG-cluster!"
     sync
 fi
 set_progress 0.3
@@ -166,8 +166,8 @@ if [ "$ov_confirm" -eq 2 ]; then
     pcpu_ov=$(parse_ov_level $pcpu_ov_level)
     [ "$ecpu_ov" -ne 0 ]  && ${bin}/fdtput $dtb_img /soc/cprh-ctrl@179c8000/thread@0/regulator qcom,custom-voltage-increase $ecpu_ov -tu
     [ "$pcpu_ov" -ne 0 ] && ${bin}/fdtput $dtb_img /soc/cprh-ctrl@179c4000/thread@0/regulator qcom,custom-voltage-increase $pcpu_ov -tu
-    ui_print "- $ecpu_ov mV is increased for LITTLE-cluster!"
-    ui_print "- $pcpu_ov mV is increased for BIG-cluster!"
+    ui_print "- $ecpu_ov uV is increased for LITTLE-cluster!"
+    ui_print "- $pcpu_ov uV is increased for BIG-cluster!"
     sync
 fi
 set_progress 0.3
