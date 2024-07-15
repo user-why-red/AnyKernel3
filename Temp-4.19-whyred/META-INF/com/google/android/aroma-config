@@ -59,9 +59,9 @@ if prop("lang.prop", "selected") == "1" then
 	setvar("s_oc",           "Need to overclock CPU?");
 	setvar("s_oc_note",      "Note: Choose \"yes\" if you need best performance and gaming\n& don't care about CPU life and battery life.\n\nBeware of overheat and high electricity bill");
 	setvar("s_oc_warning",   "If the device is damaged or data is lost due to OC, developer of San-Kernel is not responsible for it!");
-	setvar("s_oc_std",       "Yes (Standard) (BIG: 1113-2208 MHz, LITTLE: 633-1843 MHz)");
+	setvar("s_oc_std",       "Yes (Standard) (BIG: 1113-2208 GHz, LITTLE: 633-1843 GHz)");
         setvar("s_oc_def",       "No (Default) (use stock frequency for SDM636/SDM660)");
-        setvar("s_oc_hyp",       "Yes (Hyper) (BIG: 1113-2457 MHz, LITTLE: 633-1843 MHz)");
+        setvar("s_oc_hyp",       "Yes (Hyper) (BIG: 1113-2457 GHz, LITTLE: 633-1843 GHz)");
 
 	setvar("s_oc_gpu",       "Need to overclock GPU?");
 	setvar("s_oc_gpu_note",  "Note: Choose \"yes\" if you need best performance and gaming\n& don't care about GPU life and battery life.\n\nBeware of overheat and high electricity bill");
@@ -71,8 +71,8 @@ if prop("lang.prop", "selected") == "1" then
 	setvar("s_uc",           "Need to underclock CPU?");
 	setvar("s_uc_note",      "Note: Choose \"yes\" if you need best battery life with daily usage\n& care about CPU life.\n\nBeware of system load and high lag in life");
 	setvar("s_uc_warning",   "If the device is damaged or data is lost due to UC, developer of San-Kernel is not responsible for it!");
-	setvar("s_uc_bin4",      "Yes (SDM636/SDM660) (BIG: 1113-1401, LITTLE: 633-1401)");
-	setvar("s_uc_bin3",      "Yes (SDM660) (BIG: 1113-1843 Mhz, LITTLE: 633-1612 Mhz)");
+	setvar("s_uc_bin4",      "Yes (SDM636/SDM660) (BIG: 1113-1401 Ghz, LITTLE: 633-1401 Ghz)");
+	setvar("s_uc_bin3",      "Yes (SDM660) (BIG: 1113-1843 Ghz, LITTLE: 633-1612 Ghz)");
 	setvar("s_uc_def",       "No (Default) (use stock frequency for SDM636/SDM660)");
 
 	setvar("s_uv",           "Need UV (Undervolting)?");
@@ -171,9 +171,9 @@ if prop("lang.prop", "selected") == "2" then
 	setvar("s_oc",           "Perlu melakukan overclock CPU?");
         setvar("s_oc_note",      "Catatan: Pilih \"ya\" jika Anda menginginkan performa dan permainan terbaik\n& tidak peduli dengan masa pakai CPU dan masa pakai baterai.\n\nHati-hati terhadap panas berlebih dan tagihan listrik yang tinggi");
 	setvar("s_oc_warning",	 "Jika perangkat rusak atau data hilang karena OC, pengembang San-Kernel tidak bertanggung jawab!");
-        setvar("s_oc_std",	 "Ya(Standar) (BESAR: 1113-2208 MHz, KECIL: 633-1843 MHz)");
+        setvar("s_oc_std",	 "Ya(Standar) (BESAR: 1113-2208 GHz, KECIL: 633-1843 GHz)");
         setvar("s_oc_def",	 "No (Default) (use stock frequency for SDM636/SDM660)");
-        setvar("s_oc_hyp",	 "Ya(Hyper) (BESAR: 1113-2457 MHz, KECIL: 633-1843 MHz)");
+        setvar("s_oc_hyp",	 "Ya(Hyper) (BESAR: 1113-2457 GHz, KECIL: 633-1843 GHz)");
 
 	setvar("s_oc_gpu",	 "Perlu melakukan overclock GPU?");
         setvar("s_oc_gpu_note",  "Catatan: Pilih \"ya\" jika Anda memerlukan performa dan permainan terbaik\n& tidak peduli dengan masa pakai GPU dan masa pakai baterai.\n\nWaspadalah terhadap panas berlebih dan tagihan listrik yang tinggi");
@@ -183,8 +183,8 @@ if prop("lang.prop", "selected") == "2" then
 	setvar("s_uc",		 "Perlu melakukan underclock pada CPU?");
         setvar("s_uc_note",	 "Catatan: Pilih \"yes\" jika Anda membutuhkan masa pakai baterai terbaik untuk penggunaan sehari-hari\n& peduli dengan masa pakai CPU.\n\nWaspadalah terhadap beban sistem dan jeda masa pakai yang tinggi");
         setvar("s_uc_warning",	 "Jika perangkat rusak atau data hilang karena UC, pengembang San-Kernel tidak bertanggung jawab!");
-        setvar("s_uc_bin4",	 "Ya (SDM636/SDM660) (BESAR: 1113-1401, KECIL: 633-1401)");
-        setvar("s_uc_bin3",	 "Ya (SDM660) (BESAR: 1113-1843 Mhz, KECIL: 633-1612 Mhz)");
+        setvar("s_uc_bin4",	 "Ya (SDM636/SDM660) (BESAR: 1113-1401 Ghz, KECIL: 633-1401 Ghz)");
+        setvar("s_uc_bin3",	 "Ya (SDM660) (BESAR: 1113-1843 Ghz, KECIL: 633-1612 Ghz)");
         setvar("s_uc_def",	 "Tidak (Default) (gunakan frekuensi stok untuk SDM636/SDM660)");
 
 	setvar("s_uv",		 "Butuh UV? (Undervolting)");
