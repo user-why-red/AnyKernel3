@@ -93,6 +93,7 @@ set_progress 0.3
 
 # Read value by user selected from aroma prop files
 cpu_oc=$(aroma_get_value cpu_oc)
+cpu_uc=$(aroma_get_value cpu_uc)
 gpu_oc=$(aroma_get_value gpu_oc)
 zram_size=$(aroma_get_value zram_size)
 uv_confirm=$(aroma_get_value uv_confirm)
@@ -204,6 +205,21 @@ else
 fi
 sync
 # GPU oc end
+
+# CPU uc
+if [ "$cpu_uc" -eq 1 ]; then
+        ui_print "- Applying CPU underclock changes..."
+        ui_print "- CPU is underclocked to 1.4Ghz!"
+        patch_cmdline "overclock.cpu" "underclock.cpu=1"
+elif [ "$cpu_uc" -eq 2 ]; then
+        ui_print "- Applying CPU underclock changes..."
+        ui_print "- CPU is underclocked to 1.8Ghz!"
+        patch_cmdline "overclock.cpu" "overclock.cpu=2"
+else
+        patch_cmdline "underclock.cpu" ""
+fi
+sync
+# CPU uc end
 
 # Zram
 if [ "$zram_size" -ne 7 ]; then

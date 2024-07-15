@@ -50,16 +50,30 @@ if prop("lang.prop", "selected") == "1" then
 	
 	setvar("s_x_device",	 "This kernel is only for Redmi Note 5 Pro (Whyred) devices!");
 	
+	setvar("s_clock",        "Dynamic CPU frequency management");
+	setvar("s_clock_note",   "Note: Modifying CPU frequencies beyond the manufacturer’s specified limits is not recommended\noverclocking or underclocking can cause instability, hardware damage");
+	setvar("s_clock_oc",     "Need overclocking");
+	setvar("s_clock_uc",     "Need underclocking");
+	setvar("s_clock_no",     "No (Keep stock frequency scaling)");
+
 	setvar("s_oc",           "Need to overclock CPU?");
 	setvar("s_oc_note",      "Note: Choose \"yes\" if you need best performance and gaming\n& don't care about CPU life and battery life.\n\nBeware of overheat and high electricity bill");
-	setvar("s_oc_std",       "Yes(Standard) (BIG: 1113-2208 MHz, LITTLE: 633-1843 MHz)");
-        setvar("s_oc_def",       "No(Default) (BIG: 1113-1843 MHz, LITTLE: 633-1612 MHz)");
-        setvar("s_oc_hyp",       "Yes(Hyper) (BIG: 1113-2457 MHz, LITTLE: 633-1843 MHz)");
+	setvar("s_oc_warning",   "If the device is damaged or data is lost due to OC, developer of San-Kernel is not responsible for it!");
+	setvar("s_oc_std",       "Yes (Standard) (BIG: 1113-2208 MHz, LITTLE: 633-1843 MHz)");
+        setvar("s_oc_def",       "No (Default) (use stock frequency for SDM636/SDM660)");
+        setvar("s_oc_hyp",       "Yes (Hyper) (BIG: 1113-2457 MHz, LITTLE: 633-1843 MHz)");
 
 	setvar("s_oc_gpu",       "Need to overclock GPU?");
 	setvar("s_oc_gpu_note",  "Note: Choose \"yes\" if you need best performance and gaming\n& don't care about GPU life and battery life.\n\nBeware of overheat and high electricity bill");
         setvar("s_oc_gpu_yes",   "Yes (Base: 19Mhz, Max: 585Mhz)");
         setvar("s_oc_gpu_no",    "No (Base: 19Mhz, Max: 430Mhz)");
+
+	setvar("s_uc",           "Need to underclock CPU?");
+	setvar("s_uc_note",      "Note: Choose \"yes\" if you need best battery life with daily usage\n& care about CPU life.\n\nBeware of system load and high lag in life");
+	setvar("s_uc_warning",   "If the device is damaged or data is lost due to UC, developer of San-Kernel is not responsible for it!");
+	setvar("s_uc_bin4",      "Yes (SDM636/SDM660) (BIG: 1113-1401, LITTLE: 633-1401)");
+	setvar("s_uc_bin3",      "Yes (SDM660) (BIG: 1113-1843 Mhz, LITTLE: 633-1612 Mhz)");
+	setvar("s_uc_def",       "No (Default) (use stock frequency for SDM636/SDM660)");
 
 	setvar("s_uv",           "Need UV (Undervolting)?");
         setvar("s_uv_note",      "Note: Reducing the voltage can save battery, but excessive voltage reduction will cause device instability!\n(not booting, randomly reboot, abnormal display)\nAt this point you need to reflash this kernel and lower the UV level.");
@@ -148,16 +162,30 @@ if prop("lang.prop", "selected") == "2" then
 
 	setvar("s_x_device",     "Kernel ini hanya untuk perangkat Redmi Note 5 Pro (Whyred)!");
 
+	setvar("s_clock",	 "Manajemen frekuensi CPU Dinamis");
+        setvar("s_clock_note",	 "Catatan: Memodifikasi frekuensi CPU melebihi batas yang ditentukan pabrikan tidak disarankan\noverclocking atau underclocking dapat menyebabkan ketidakstabilan, kerusakan perangkat keras");
+        setvar("s_clock_oc",	 "Perlu overclock");
+        setvar("s_clock_uc",	 "Perlu underclocking");
+        setvar("s_clock_no",	 "Tidak (Pertahankan skala frekuensi stok)");
+
 	setvar("s_oc",           "Perlu melakukan overclock CPU?");
         setvar("s_oc_note",      "Catatan: Pilih \"ya\" jika Anda menginginkan performa dan permainan terbaik\n& tidak peduli dengan masa pakai CPU dan masa pakai baterai.\n\nHati-hati terhadap panas berlebih dan tagihan listrik yang tinggi");
+	setvar("s_oc_warning",	 "Jika perangkat rusak atau data hilang karena OC, pengembang San-Kernel tidak bertanggung jawab!");
         setvar("s_oc_std",	 "Ya(Standar) (BESAR: 1113-2208 MHz, KECIL: 633-1843 MHz)");
-        setvar("s_oc_def",	 "Tidak(Default) (BESAR: 1113-1843 MHz, KECIL: 633-1612 MHz)");
+        setvar("s_oc_def",	 "No (Default) (use stock frequency for SDM636/SDM660)");
         setvar("s_oc_hyp",	 "Ya(Hyper) (BESAR: 1113-2457 MHz, KECIL: 633-1843 MHz)");
 
 	setvar("s_oc_gpu",	 "Perlu melakukan overclock GPU?");
         setvar("s_oc_gpu_note",  "Catatan: Pilih \"ya\" jika Anda memerlukan performa dan permainan terbaik\n& tidak peduli dengan masa pakai GPU dan masa pakai baterai.\n\nWaspadalah terhadap panas berlebih dan tagihan listrik yang tinggi");
         setvar("s_oc_gpu_yes",   "Ya (Basis: 19Mhz, Maks: 585Mhz)");
         setvar("s_oc_gpu_no",	 "Tidak (Basis: 19Mhz, Maks: 430Mhz)");
+
+	setvar("s_uc",		 "Perlu melakukan underclock pada CPU?");
+        setvar("s_uc_note",	 "Catatan: Pilih \"yes\" jika Anda membutuhkan masa pakai baterai terbaik untuk penggunaan sehari-hari\n& peduli dengan masa pakai CPU.\n\nWaspadalah terhadap beban sistem dan jeda masa pakai yang tinggi");
+        setvar("s_uc_warning",	 "Jika perangkat rusak atau data hilang karena UC, pengembang San-Kernel tidak bertanggung jawab!");
+        setvar("s_uc_bin4",	 "Ya (SDM636/SDM660) (BESAR: 1113-1401, KECIL: 633-1401)");
+        setvar("s_uc_bin3",	 "Ya (SDM660) (BESAR: 1113-1843 Mhz, KECIL: 633-1612 Mhz)");
+        setvar("s_uc_def",	 "Tidak (Default) (gunakan frekuensi stok untuk SDM636/SDM660)");
 
 	setvar("s_uv",		 "Butuh UV? (Undervolting)");
         setvar("s_uv_note",	 "Catatan: Mengurangi tegangan dapat menghemat baterai, tetapi pengurangan tegangan yang berlebihan akan menyebabkan ketidakstabilan perangkat!\n(tidak dapat melakukan booting, reboot secara acak, tampilan tidak normal)\nPada titik ini Anda perlu melakukan reflash kernel ini dan menurunkan tingkat UV.");
@@ -256,6 +284,28 @@ if resexec("is_whyred.sh") != "0" then
 endif;
 # Check device end
 
+# Clock confirm
+selectbox(
+    "\n\n<@center>" + getvar("s_clock") + "</@>",
+    "<@center>\n\n\n\n\n\n\n\n" + getvar("s_clock_note") + "\n</@>",
+    "",
+    "clk_confirm.prop",
+    getvar("s_clock_oc"), "", 1,
+    getvar("s_clock_uc"), "", 0,
+    getvar("s_clock_no"), "", 0
+);
+# Clock confirm end
+
+# Clock oc risk button
+if prop("clk_confirm.prop", "selected.0") == "1" then
+    alert(
+        getvar("s_warning"),
+        getvar("s_oc_warning"),
+        "@warning",
+        getvar("s_text_yes")
+);
+# Clock oc risk button end
+
 # CPU oc
 selectbox(
     "\n\n<@center>" + getvar("s_oc") + "</@>",
@@ -277,7 +327,34 @@ selectbox(
     getvar("s_oc_gpu_yes"), "", 0,
     getvar("s_oc_gpu_no"), "", 1
 );
+
+endif;
 # GPU oc end
+
+# Clock uc risk button
+if prop("clk_confirm.prop", "selected.0") == "2" then
+    alert(
+        getvar("s_warning"),
+        getvar("s_uc_warning"),
+        "@warning",
+        getvar("s_text_yes")
+);
+# Clock uc risk button end
+
+# CPU uc
+selectbox(
+    "\n\n<@center>" + getvar("s_uc") + "</@>",
+    "<@center>\n\n\n\n\n\n\n\n" + getvar("s_uc_note") + "\n</@>",
+    "",
+    "cpu_uc.prop",
+    getvar("s_uc_bin4"), "", 0,
+    getvar("s_uc_bin3"), "", 1,
+    getvar("s_uc_def"), "", 1
+);
+
+endif;
+# CPU uc end
+
 
 # Uv confirm
 selectbox(
