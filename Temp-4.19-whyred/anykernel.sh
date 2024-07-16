@@ -210,11 +210,11 @@ sync
 if [ "$cpu_uc" -eq 1 ]; then
         ui_print "- Applying CPU underclock changes..."
         ui_print "- CPU is underclocked to 1.4Ghz!"
-        patch_cmdline "overclock.cpu" "underclock.cpu=1"
+        patch_cmdline "underclock.cpu" "underclock.cpu=1"
 elif [ "$cpu_uc" -eq 2 ]; then
         ui_print "- Applying CPU underclock changes..."
         ui_print "- CPU is underclocked to 1.8Ghz!"
-        patch_cmdline "overclock.cpu" "overclock.cpu=2"
+        patch_cmdline "underclock.cpu" "underclock.cpu=2"
 else
         patch_cmdline "underclock.cpu" ""
 fi
