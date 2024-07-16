@@ -50,11 +50,11 @@ if prop("lang.prop", "selected") == "1" then
 	
 	setvar("s_x_device",	 "This kernel is only for Redmi Note 5 Pro (Whyred) devices!");
 	
-	setvar("s_clock",        "Dynamic CPU frequency management");
-	setvar("s_clock_note",   "Note: Modifying CPU frequencies beyond the manufacturer’s specified limits is not recommended\noverclocking or underclocking can cause instability, hardware damage");
-	setvar("s_clock_oc",     "Need overclocking");
-	setvar("s_clock_uc",     "Need underclocking");
-	setvar("s_clock_no",     "No (Keep stock frequency scaling)");
+	setvar("s_clock",        "Dynamic CPU frequency management!");
+	setvar("s_clock_note",   "Note: Modifying CPU frequencies beyond the manufacturer’s specified limits is not recommended,\n And overclocking or underclocking can cause instability, hardware damage");
+	setvar("s_clock_oc",     "Yes! (Overclocking)");
+	setvar("s_clock_uc",     "Yes! (Underclocking)");
+	setvar("s_clock_no",     "No! (Keep stock frequency scaling)");
 
 	setvar("s_oc",           "Need to overclock CPU?");
 	setvar("s_oc_note",      "Note: Choose \"yes\" if you need best performance and gaming\n& don't care about CPU life and battery life.\n\nBeware of overheat and high electricity bill");
@@ -69,7 +69,7 @@ if prop("lang.prop", "selected") == "1" then
         setvar("s_oc_gpu_no",    "No (Base: 19Mhz, Max: 430Mhz)");
 
 	setvar("s_uc",           "Need to underclock CPU?");
-	setvar("s_uc_note",      "Note: Choose \"yes\" if you need best battery life with daily usage\n& care about CPU life.\n\nBeware of system load and high lag in life");
+	setvar("s_uc_note",      "Note: Choose \"yes\" if you need best battery life with daily usage\n& care much about CPU lifespan.\n\nBeware of system load and high lag in life");
 	setvar("s_uc_warning",   "If the device is damaged or data is lost due to UC, developer of San-Kernel is not responsible for it!");
 	setvar("s_uc_bin4",      "Yes (SDM636/SDM660) (BIG: 1113-1401 Ghz, LITTLE: 633-1401 Ghz)");
 	setvar("s_uc_bin3",      "Yes (SDM660) (BIG: 1113-1843 Ghz, LITTLE: 633-1612 Ghz)");
@@ -164,8 +164,8 @@ if prop("lang.prop", "selected") == "2" then
 
 	setvar("s_clock",	 "Manajemen frekuensi CPU Dinamis");
         setvar("s_clock_note",	 "Catatan: Memodifikasi frekuensi CPU melebihi batas yang ditentukan pabrikan tidak disarankan\noverclocking atau underclocking dapat menyebabkan ketidakstabilan, kerusakan perangkat keras");
-        setvar("s_clock_oc",	 "Perlu overclock");
-        setvar("s_clock_uc",	 "Perlu underclocking");
+        setvar("s_clock_oc",	 "Perlu! (Overclocking)");
+        setvar("s_clock_uc",	 "Perlu! (Underclocking)");
         setvar("s_clock_no",	 "Tidak (Pertahankan skala frekuensi stok)");
 
 	setvar("s_oc",           "Perlu melakukan overclock CPU?");
