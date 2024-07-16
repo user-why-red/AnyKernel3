@@ -224,7 +224,7 @@ sync
 # Zram
 if [ "$zram_size" -ne 7 ]; then
         ui_print "- Applying zram changes..."
-	ui_print "- ZRAM is resized to $zram_size !"
+	ui_print "- ZRAM is resized to $zram_size GB!"
         patch_cmdline "zram.resize" "zram.resize=$zram_size"
 else
         patch_cmdline "zram.resize" ""
