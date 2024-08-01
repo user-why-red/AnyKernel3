@@ -50,21 +50,46 @@ if prop("lang.prop", "selected") == "1" then
 	
 	setvar("s_x_device",	 "This kernel is only for Redmi Note 5 Pro (Whyred) devices!");
 	
+	setvar("s_clock",        "Dynamic CPU frequency management!");
+	setvar("s_clock_note",   "Note: Modifying CPU frequencies beyond the manufacturer’s specified limits is not recommended,\n And overclocking or underclocking can cause instability, hardware damage");
+	setvar("s_clock_oc",     "Yes! (Overclocking)");
+	setvar("s_clock_uc",     "Yes! (Underclocking)");
+	setvar("s_clock_no",     "No! (Keep stock frequency scaling)");
+
 	setvar("s_oc",           "Need to overclock CPU?");
 	setvar("s_oc_note",      "Note: Choose \"yes\" if you need best performance and gaming\n& don't care about CPU life and battery life.\n\nBeware of overheat and high electricity bill");
-	setvar("s_oc_yes",       "Yes (BIG: 1113-2208 MHz, LITTLE: 633-1843 MHz)");
-	setvar("s_oc_no",        "No (BIG: 1113-1843 MHz, LITTLE: 633-1612 MHz)");
+	setvar("s_oc_warning",   "If the device is damaged or data is lost due to OC, developer of San-Kernel is not responsible for it!");
+	setvar("s_oc_std",       "Yes (Standard) (BIG: 1113-2208 GHz, LITTLE: 633-1843 GHz)");
+        setvar("s_oc_def",       "No (Default) (use stock frequency for SDM636/SDM660)");
+        setvar("s_oc_hyp",       "Yes (Hyper) (BIG: 1113-2457 GHz, LITTLE: 633-1843 GHz)");
 
 	setvar("s_oc_gpu",       "Need to overclock GPU?");
 	setvar("s_oc_gpu_note",  "Note: Choose \"yes\" if you need best performance and gaming\n& don't care about GPU life and battery life.\n\nBeware of overheat and high electricity bill");
         setvar("s_oc_gpu_yes",   "Yes (Base: 19Mhz, Max: 585Mhz)");
         setvar("s_oc_gpu_no",    "No (Base: 19Mhz, Max: 430Mhz)");
 
-	setvar("s_uv",           "Need UV?");
+	setvar("s_uc",           "Need to underclock CPU?");
+	setvar("s_uc_note",      "Note: Choose \"yes\" if you need best battery life with daily usage\n& care much about CPU lifespan.\n\nBeware of system load and high lag in life");
+	setvar("s_uc_warning",   "If the device is damaged or data is lost due to UC, developer of San-Kernel is not responsible for it!");
+	setvar("s_uc_bin4",      "Yes (SDM636/SDM660) (BIG: 1113-1401 Ghz, LITTLE: 633-1401 Ghz)");
+	setvar("s_uc_bin3",      "Yes (SDM660) (BIG: 1113-1843 Ghz, LITTLE: 633-1612 Ghz)");
+	setvar("s_uc_def",       "No (Default) (use stock frequency for SDM636/SDM660)");
+
+	setvar("s_uv",           "Need UV (Undervolting)?");
         setvar("s_uv_note",      "Note: Reducing the voltage can save battery, but excessive voltage reduction will cause device instability!\n(not booting, randomly reboot, abnormal display)\nAt this point you need to reflash this kernel and lower the UV level.");
         setvar("s_uv_no",        "No, please keep default voltage.");
         setvar("s_uv_yes",       "Yes, I need it!");
         setvar("s_uv_warning",   "If the device is damaged or data is lost due to UV, developer of San-Kernel is not responsible for it!");
+
+        setvar("s_zram",         "Zram Configuration!");
+        setvar("s_zram_note",    "ZRAM is a feature in Linux that uses part of your RAM as compressed swap space, which means it can store more data in memory and access it quickly. This helps improve performance, especially on devices with limited memory.");
+        setvar("s_zram_s1",      "1GB (For light OS!)");
+        setvar("s_zram_s2",      "2GB (Default!)");
+        setvar("s_zram_s3",      "3GB (Recommended!)");
+        setvar("s_zram_s4",      "4GB (Far enough!)");
+        setvar("s_zram_s5",      "5GB (Overkill!)");
+        setvar("s_zram_s6",      "6GB (Not recommended!)");
+        setvar("s_zram_s7",      "Reset (Dont change anything!)");
 
 	setvar("s_em",           "Select EAS energy model");
 	setvar("s_em_1",         "Note: The default is \"CAF\" energy model.\nKeep default if you don't know about energy model.");
@@ -74,16 +99,6 @@ if prop("lang.prop", "selected") == "1" then
 	setvar("s_em_s3_sub",    "Note: Not available if you enabled overclock");
 	setvar("s_em_s4",        "Hypeartist (Calculated by hypeartist)");
 	setvar("s_em_s_na",      "This energy model is not available,\nplease select another.");
-
-	setvar("s_zram",         "Zram Configuration!");
-	setvar("s_zram_note",    "ZRAM is a feature in Linux that uses part of your RAM as compressed swap space, which means it can store more data in memory and access it quickly. This helps improve performance, especially on devices with limited memory.");
-	setvar("s_zram_s1",      "1GB (For light OS!)");
-	setvar("s_zram_s2",      "2GB (Default!)");
-	setvar("s_zram_s3",      "3GB (Recommended!)");
-	setvar("s_zram_s4",      "4GB (Far enough!)");
-	setvar("s_zram_s5",      "5GB (Overkill!)");
-	setvar("s_zram_s6",      "6GB (Not recommended!)");
-	setvar("s_zram_s7",      "Reset (Dont change anything!)");
 
 	setvar("s_ecpu_uv",      "Select UV level of the efficiency cores");
 	setvar("s_ecpu_uv_note", "Note: The efficiency cores (LITTLE) focuses more on battery saving, it's suitable for the daily tasks of the device.");
@@ -96,10 +111,27 @@ if prop("lang.prop", "selected") == "1" then
 	setvar("s_uv_lvl5",      "100 mV (Unstable!)");
 	setvar("s_uv_lvl6",      "120 mV (Broken!)");
 
-	setvar("s_hbutton",      "Select headphone button mode");
-	setvar("s_hbutton_note", "Select alternative one if the wired headphone buttons not working properly");
-	setvar("s_hbutton_n",    "Normal mode (For most roms)");
-	setvar("s_hbutton_a",    "Alternative mode (For few roms)");
+        setvar("s_ov",           "Need OV (Overvolting)?");
+        setvar("s_ov_note",      "Note: Increasing the voltage can improve performance, but excessive voltage boosting will cause device instability!\n(not booting, randomly reboot, Nuclear blast)\nAt this point you need to reflash this kernel and lower the OV level.");
+        setvar("s_ov_no",        "No, please keep default voltage.");
+        setvar("s_ov_yes",       "Yes, I need it!");
+        setvar("s_ov_warning",   "If the device is damaged or data is lost due to OV, developer of San-Kernel is not responsible for it!");
+
+        setvar("s_ecpu_ov",      "Select OV level of the efficiency cores");
+        setvar("s_ecpu_ov_note", "Note: The efficiency cores (LITTLE) focuses more on battery saving, it's suitable for the daily tasks of the device.");
+        setvar("s_pcpu_ov",      "Select OV level of the performance cores");
+        setvar("s_pcpu_ov_note", "Note: The performance cores (BIG) focuses more on performance, it's suitable for gaming.");
+        setvar("s_ov_lvl1",      "No OV (default)");
+        setvar("s_ov_lvl2",      "20 mV");
+        setvar("s_ov_lvl3",      "40 mV");
+        setvar("s_ov_lvl4",      "80 mV (Stable!)");
+        setvar("s_ov_lvl5",      "100 mV (Unstable/Overheat!)");
+        setvar("s_ov_lvl6",      "120 mV (Blast!)");
+
+        setvar("s_hbutton",      "Select headphone button mode");
+        setvar("s_hbutton_note", "Select alternative one if the wired headphone buttons not working properly");
+        setvar("s_hbutton_n",    "Normal mode (For most roms)");
+        setvar("s_hbutton_a",    "Alternative mode (For few roms)");
 
 	setvar("s_wipe_cache_t", "Wipe dalvik-cache & cache");
 	setvar("s_wipe_cache_w", "Do not do this if you don't know\nwhat are you doing!\n\nContinue?");
@@ -135,31 +167,46 @@ if prop("lang.prop", "selected") == "2" then
 
 	setvar("s_x_device",     "Kernel ini hanya untuk perangkat Redmi Note 5 Pro (Whyred)!");
 
+	setvar("s_clock",	 "Manajemen frekuensi CPU Dinamis");
+        setvar("s_clock_note",	 "Catatan: Memodifikasi frekuensi CPU melebihi batas yang ditentukan pabrikan tidak disarankan\noverclocking atau underclocking dapat menyebabkan ketidakstabilan, kerusakan perangkat keras");
+        setvar("s_clock_oc",	 "Perlu! (Overclocking)");
+        setvar("s_clock_uc",	 "Perlu! (Underclocking)");
+        setvar("s_clock_no",	 "Tidak (Pertahankan skala frekuensi stok)");
+
 	setvar("s_oc",           "Perlu melakukan overclock CPU?");
         setvar("s_oc_note",      "Catatan: Pilih \"ya\" jika Anda menginginkan performa dan permainan terbaik\n& tidak peduli dengan masa pakai CPU dan masa pakai baterai.\n\nHati-hati terhadap panas berlebih dan tagihan listrik yang tinggi");
-        setvar("s_oc_yes",       "Ya (BESAR: 1113-2208 MHz, KECIL: 633-1843 MHz)");
-        setvar("s_oc_no",        "Tidak (BESAR: 1113-1843 MHz, KECIL: 633-1612 MHz)");
+	setvar("s_oc_warning",	 "Jika perangkat rusak atau data hilang karena OC, pengembang San-Kernel tidak bertanggung jawab!");
+        setvar("s_oc_std",	 "Ya(Standar) (BESAR: 1113-2208 GHz, KECIL: 633-1843 GHz)");
+        setvar("s_oc_def",	 "No (Default) (use stock frequency for SDM636/SDM660)");
+        setvar("s_oc_hyp",	 "Ya(Hyper) (BESAR: 1113-2457 GHz, KECIL: 633-1843 GHz)");
 
 	setvar("s_oc_gpu",	 "Perlu melakukan overclock GPU?");
         setvar("s_oc_gpu_note",  "Catatan: Pilih \"ya\" jika Anda memerlukan performa dan permainan terbaik\n& tidak peduli dengan masa pakai GPU dan masa pakai baterai.\n\nWaspadalah terhadap panas berlebih dan tagihan listrik yang tinggi");
         setvar("s_oc_gpu_yes",   "Ya (Basis: 19Mhz, Maks: 585Mhz)");
         setvar("s_oc_gpu_no",	 "Tidak (Basis: 19Mhz, Maks: 430Mhz)");
 
-	setvar("s_uv",		 "Butuh UV?");
+	setvar("s_uc",		 "Perlu melakukan underclock pada CPU?");
+        setvar("s_uc_note",	 "Catatan: Pilih \"yes\" jika Anda membutuhkan masa pakai baterai terbaik untuk penggunaan sehari-hari\n& peduli dengan masa pakai CPU.\n\nWaspadalah terhadap beban sistem dan jeda masa pakai yang tinggi");
+        setvar("s_uc_warning",	 "Jika perangkat rusak atau data hilang karena UC, pengembang San-Kernel tidak bertanggung jawab!");
+        setvar("s_uc_bin4",	 "Ya (SDM636/SDM660) (BESAR: 1113-1401 Ghz, KECIL: 633-1401 Ghz)");
+        setvar("s_uc_bin3",	 "Ya (SDM660) (BESAR: 1113-1843 Ghz, KECIL: 633-1612 Ghz)");
+        setvar("s_uc_def",	 "Tidak (Default) (gunakan frekuensi stok untuk SDM636/SDM660)");
+
+	setvar("s_uv",		 "Butuh UV? (Undervolting)");
         setvar("s_uv_note",	 "Catatan: Mengurangi tegangan dapat menghemat baterai, tetapi pengurangan tegangan yang berlebihan akan menyebabkan ketidakstabilan perangkat!\n(tidak dapat melakukan booting, reboot secara acak, tampilan tidak normal)\nPada titik ini Anda perlu melakukan reflash kernel ini dan menurunkan tingkat UV.");
         setvar("s_uv_no",	 "Tidak, harap pertahankan voltase default.");
         setvar("s_uv_yes",	 "Ya, saya membutuhkannya!");
         setvar("s_uv_warning",	 "Jika perangkat rusak atau data hilang karena UV, pengembang San-Kernel tidak bertanggung jawab!");
 
-	setvar("s_zram",	 "Konfigurasi Zram!");
-	setvar("s_zram_note",	 "ZRAM adalah fitur di Linux yang menggunakan sebagian RAM Anda sebagai ruang swap terkompresi, yang berarti dapat menyimpan lebih banyak data di memori dan mengaksesnya dengan cepat. Hal ini membantu meningkatkan kinerja, terutama pada perangkat dengan memori terbatas. ");
-        setvar("s_zram_s1",	 "1GB (Untuk OS ringan!)");
-        setvar("s_zram_s2",	 "2GB (Bawaan!)");
-        setvar("s_zram_s3",	 "3GB (Disarankan!)");
-        setvar("s_zram_s4",	 "4GB (Cukup jauh!)");
-        setvar("s_zram_s5",	 "5GB (Berlebihan!)");
-        setvar("s_zram_s6",	 "6GB (Tidak disarankan!)");
-	setvar("s_zram_s7",	 "Reset (Jangan ubah apa pun!)");
+        setvar("s_zram",         "Konfigurasi Zram!");
+        setvar("s_zram_note",    "ZRAM adalah fitur di Linux yang menggunakan sebagian RAM Anda sebagai ruang swap terkompresi, yang berarti dapat menyimpan lebih banyak data di memori dan mengaksesnya dengan cepat. Hal ini membantu meningkatkan kinerja, terutama pada perangkat dengan memori terbatas. ");
+        setvar("s_zram_s1",      "1GB (Untuk OS ringan!)");
+        setvar("s_zram_s2",      "2GB (Bawaan!)");
+        setvar("s_zram_s3",      "3GB (Disarankan!)");
+        setvar("s_zram_s4",      "4GB (Cukup jauh!)");
+        setvar("s_zram_s5",      "5GB (Berlebihan!)");
+        setvar("s_zram_s6",      "6GB (Tidak disarankan!)");
+        setvar("s_zram_s7",      "Reset (Jangan ubah apa pun!)");
 
 	setvar("s_em",		 "Pilih model energi EAS");
         setvar("s_em_1",	 "Catatan: Defaultnya adalah model energi \"CAF\".\nTetap default jika Anda tidak tahu tentang model energi.");
@@ -169,11 +216,6 @@ if prop("lang.prop", "selected") == "2" then
         setvar("s_em_s3_sub",	 "Catatan: Tidak tersedia jika Anda mengaktifkan overclock");
         setvar("s_em_s4",	 "Hypeartist (Dihitung oleh hyperartist)");
         setvar("s_em_s_na",	 "Model energi ini tidak tersedia,\nsilakan pilih yang lain.");
-
-	setvar("s_hbutton",      "Pilih mode tombol headphone");
-	setvar("s_hbutton_note", "Pilih alternatif jika tombol headphone berkabel tidak berfungsi dengan benar");
-        setvar("s_hbutton_n",    "Mode normal (Untuk sebagian besar ROM)");
-	setvar("s_hbutton_a",    "Mode alternatif (Untuk beberapa ROM)");
 
 	setvar("s_ecpu_uv",	 "Pilih tingkat UV inti daya");
 	setvar("s_ecpu_uv_note", "Catatan: Inti daya (LITTLE) lebih berfokus pada penghematan baterai, cocok untuk tugas sehari-hari perangkat.");
@@ -185,6 +227,28 @@ if prop("lang.prop", "selected") == "2" then
 	setvar("s_uv_lvl4",	 "80 mV (Stable!)");
 	setvar("s_uv_lvl5",	 "100 mV (Unstable!)");
 	setvar("s_uv_lvl6",      "120 mV (Broken!)");
+
+	setvar("s_ov",		 "Butuh OV (Overvolting)?");
+        setvar("s_ov_note",	 "Catatan: Meningkatkan tegangan dapat meningkatkan kinerja, tetapi peningkatan tegangan yang berlebihan akan menyebabkan ketidakstabilan perangkat!\n(tidak dapat melakukan booting, reboot secara acak, Ledakan nuklir)\nPada titik ini Anda perlu melakukan reflash kernel ini dan turunkan level OV.");
+        setvar("s_ov_no",	 "Tidak, harap pertahankan voltase default.");
+        setvar("s_ov_yes",	 "Ya, saya membutuhkannya!");
+        setvar("s_ov_warning",	 "Jika perangkat rusak atau data hilang karena OV, pengembang San-Kernel tidak bertanggung jawab!");
+
+        setvar("s_ecpu_ov",	 "Pilih level OV dari inti efisiensi");
+        setvar("s_ecpu_ov_note", "Catatan: Inti efisiensi (LITTLE) lebih berfokus pada penghematan baterai, cocok untuk tugas sehari-hari perangkat.");
+        setvar("s_pcpu_ov",	 "Pilih level OV dari inti kinerja");
+        setvar("s_pcpu_ov_note", "Catatan: Performance core (BIG) lebih fokus pada performa, cocok untuk bermain game.");
+        setvar("s_ov_lvl1",	 "Tidak Ada OV (default)");
+        setvar("s_ov_lvl2",	 "20 mV");
+        setvar("s_ov_lvl3",	 "40 mV");
+        setvar("s_ov_lvl4",	 "80 mV (Stabil!)");
+        setvar("s_ov_lvl5",	 "100 mV (Tidak Stabil/Terlalu Panas!)");
+        setvar("s_ov_lvl6",	 "120 mV (Ledakan!)");
+
+        setvar("s_hbutton",      "Pilih mode tombol headphone");
+        setvar("s_hbutton_note", "Pilih alternatif jika tombol headphone berkabel tidak berfungsi dengan benar");
+        setvar("s_hbutton_n",    "Mode normal (Untuk sebagian besar ROM)");
+        setvar("s_hbutton_a",    "Mode alternatif (Untuk beberapa ROM)");
 
 	setvar("s_wipe_cache_t", "Hapus dalvik-cache & cache");
         setvar("s_wipe_cache_w", "Jangan lakukan ini jika Anda tidak tahu\napa yang Anda lakukan!\n\nLanjutkan?");
@@ -230,14 +294,37 @@ if resexec("is_whyred.sh") != "0" then
 endif;
 # Check device end
 
+# Clock confirm
+selectbox(
+    "\n\n<@center>" + getvar("s_clock") + "</@>",
+    "<@center>\n\n\n\n\n\n\n\n" + getvar("s_clock_note") + "\n</@>",
+    "",
+    "clk_confirm.prop",
+    getvar("s_clock_oc"), "", 1,
+    getvar("s_clock_uc"), "", 0,
+    getvar("s_clock_no"), "", 0
+);
+# Clock confirm end
+
+# Clock oc risk button
+if prop("clk_confirm.prop", "selected.0") == "1" then
+    alert(
+        getvar("s_warning"),
+        getvar("s_oc_warning"),
+        "@warning",
+        getvar("s_text_yes")
+);
+# Clock oc risk button end
+
 # CPU oc
 selectbox(
     "\n\n<@center>" + getvar("s_oc") + "</@>",
     "<@center>\n\n\n\n\n\n\n\n" + getvar("s_oc_note") + "\n</@>",
     "",
     "cpu_oc.prop",
-    getvar("s_oc_yes"), "", 0,
-    getvar("s_oc_no"), "", 1
+    getvar("s_oc_std"), "", 0,
+    getvar("s_oc_hyp"), "", 1,
+    getvar("s_oc_def"), "", 1
 );	        
 # CPU oc end
 
@@ -250,7 +337,34 @@ selectbox(
     getvar("s_oc_gpu_yes"), "", 0,
     getvar("s_oc_gpu_no"), "", 1
 );
+
+endif;
 # GPU oc end
+
+# Clock uc risk button
+if prop("clk_confirm.prop", "selected.0") == "2" then
+    alert(
+        getvar("s_warning"),
+        getvar("s_uc_warning"),
+        "@warning",
+        getvar("s_text_yes")
+);
+# Clock uc risk button end
+
+# CPU uc
+selectbox(
+    "\n\n<@center>" + getvar("s_uc") + "</@>",
+    "<@center>\n\n\n\n\n\n\n\n" + getvar("s_uc_note") + "\n</@>",
+    "",
+    "cpu_uc.prop",
+    getvar("s_uc_bin4"), "", 0,
+    getvar("s_uc_bin3"), "", 1,
+    getvar("s_uc_def"), "", 1
+);
+
+endif;
+# CPU uc end
+
 
 # Uv confirm
 selectbox(
@@ -303,6 +417,57 @@ if prop("uv_confirm.prop", "selected.0") == "2" then
 endif;
 # Uv select end
 
+# Ov confirm
+selectbox(
+    "\n\n<@center>" + getvar("s_ov") + "</@>",
+    "<@center>\n\n\n\n\n\n\n\n" + getvar("s_ov_note") + "\n</@>",
+    "",
+    "ov_confirm.prop",
+    getvar("s_ov_no"), "", 1,
+    getvar("s_ov_yes"), "", 0
+);
+# Ov confirm end
+
+# Ov risk button
+if prop("ov_confirm.prop", "selected.0") == "2" then
+    alert(
+        getvar("s_warning"),
+        getvar("s_ov_warning"),
+        "@warning",
+        getvar("s_text_yes")
+);
+# Ov risk button end
+
+# Ov for e cores
+    selectbox(
+        "\n\n<@center>" + getvar("s_ecpu_ov") + "</@>",
+        "<@center>\n\n\n\n\n\n\n\n" + getvar("s_ecpu_ov_note") + "\n</@>",
+        "",
+        "ecpu_ov_level.prop",
+        getvar("s_ov_lvl1"), "", 1,
+        getvar("s_ov_lvl2"), "", 0,
+        getvar("s_ov_lvl3"), "", 0,
+        getvar("s_ov_lvl4"), "", 0,
+        getvar("s_ov_lvl5"), "", 0,
+        getvar("s_ov_lvl6"), "", 0
+);
+# Ov for p cores
+    selectbox(
+        "\n\n<@center>" + getvar("s_pcpu_ov") + "</@>",
+        "<@center>\n\n\n\n\n\n\n\n" + getvar("s_pcpu_ov_note") + "\n</@>",
+        "",
+        "pcpu_ov_level.prop",
+        getvar("s_ov_lvl1"), "", 1,
+        getvar("s_ov_lvl2"), "", 0,
+        getvar("s_ov_lvl3"), "", 0,
+        getvar("s_ov_lvl4"), "", 0,
+        getvar("s_ov_lvl5"), "", 0,
+        getvar("s_ov_lvl6"), "", 0
+);
+
+endif;
+# Ov select end
+
 # Wired headphone button mode
 selectbox(
     "\n\n<@center>" + getvar("s_hbutton") + "</@>",
@@ -325,8 +490,8 @@ selectbox(
         getvar("s_zram_s3"), "", 0,
         getvar("s_zram_s4"), "", 0,
         getvar("s_zram_s5"), "", 0,
-	getvar("s_zram_s6"), "", 0,
-	getvar("s_zram_s7"), "", 0
+        getvar("s_zram_s6"), "", 0,
+        getvar("s_zram_s7"), "", 0
 );
 
 # Zram end

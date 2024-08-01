@@ -65,6 +65,20 @@ parse_uv_level() {
 }
 # Input UV lvl end
 
+# Input OV lvl to aroma
+parse_ov_level() {
+  case "$1" in
+    "1") echo 0;;
+    "2") echo 20000;;  # 20 mV
+    "3") echo 40000;;  # 40 mV
+    "4") echo 80000;;  # 80 mV
+    "5") echo 100000;; # 100 mV
+    "6") echo 120000;; # 120 mV
+    *) echo 0;;
+  esac
+}
+# Input OV lvl end
+
 # AnyKernel split boot install
 split_boot;
 # Split boot install end
@@ -79,10 +93,14 @@ set_progress 0.3
 
 # Read value by user selected from aroma prop files
 cpu_oc=$(aroma_get_value cpu_oc)
+cpu_uc=$(aroma_get_value cpu_uc)
 gpu_oc=$(aroma_get_value gpu_oc)
 hbutton=$(aroma_get_value hbutton)
 zram_size=$(aroma_get_value zram_size)
 uv_confirm=$(aroma_get_value uv_confirm)
+ov_confirm=$(aroma_get_value ov_confirm)
+ecpu_ov_level=$(aroma_get_value ecpu_ov_level)
+pcpu_ov_level=$(aroma_get_value pcpu_ov_level)
 ecpu_uv_level=$(aroma_get_value ecpu_uv_level)
 pcpu_uv_level=$(aroma_get_value pcpu_uv_level)
 energy_model=$(aroma_get_value energy_model)
@@ -136,17 +154,42 @@ if [ "$uv_confirm" -eq 2 ]; then
     pcpu_uv=$(parse_uv_level $pcpu_uv_level)
     [ "$ecpu_uv" -ne 0 ]  && ${bin}/fdtput $dtb_img /soc/cprh-ctrl@179c8000/thread@0/regulator qcom,custom-voltage-reduce $ecpu_uv -tu
     [ "$pcpu_uv" -ne 0 ] && ${bin}/fdtput $dtb_img /soc/cprh-ctrl@179c4000/thread@0/regulator qcom,custom-voltage-reduce $pcpu_uv -tu
-    ui_print "- $ecpu_uv mV is reduced for LITTLE-cluster"
-    ui_print "- $pcpu_uv mV is reduced for BIG-cluster"
+    ui_print "- $ecpu_uv uV is reduced for LITTLE-cluster!"
+    ui_print "- $pcpu_uv uV is reduced for BIG-cluster!"
     sync
 fi
 set_progress 0.3
 # Apply uv voltages end
 
+# Apply ov voltages
+if [ "$ov_confirm" -eq 2 ]; then
+    ui_print "- Applying OV changes..."
+    ecpu_ov=$(parse_ov_level $ecpu_ov_level)
+    pcpu_ov=$(parse_ov_level $pcpu_ov_level)
+    [ "$ecpu_ov" -ne 0 ]  && ${bin}/fdtput $dtb_img /soc/cprh-ctrl@179c8000/thread@0/regulator qcom,custom-voltage-increase $ecpu_ov -tu
+    [ "$pcpu_ov" -ne 0 ] && ${bin}/fdtput $dtb_img /soc/cprh-ctrl@179c4000/thread@0/regulator qcom,custom-voltage-increase $pcpu_ov -tu
+    ui_print "- $ecpu_ov uV is increased for LITTLE-cluster!"
+    ui_print "- $pcpu_ov uV is increased for BIG-cluster!"
+    sync
+fi
+set_progress 0.3
+# Apply ov voltages end
+
+# Print final voltage
+if [ "$uv_confirm" -eq 2 ] && [ "$ov_confirm" -eq 2 ]; then
+    ui_print "- Final voltage = reference voltage - undervoltage + overvoltage."
+fi
+# Final voltage end
+
 # CPU oc
 if [ "$cpu_oc" -eq 1 ]; then
-	ui_print "- Applying CPU overclock changes..."
-	patch_cmdline "overclock.cpu" "overclock.cpu=1"
+        ui_print "- Applying CPU overclock changes..."
+        ui_print "- CPU is overclocked to 2.2Ghz!"
+        patch_cmdline "overclock.cpu" "overclock.cpu=1"
+elif [ "$cpu_oc" -eq 2 ]; then
+        ui_print "- Applying CPU overclock changes..."
+        ui_print "- CPU is overclocked to 2.4Ghz!"
+        patch_cmdline "overclock.cpu" "overclock.cpu=2"
 else
 	patch_cmdline "overclock.cpu" ""
 fi
@@ -156,6 +199,7 @@ sync
 #GPU oc
 if [ "$gpu_oc" -eq 1 ]; then
 	ui_print "- Applying GPU overclock changes..."
+	ui_print "- GPU is overclocked to 585Mhz(Adreno 509) or 750Mhz(Adreno 512)!"
         patch_cmdline "overclock.gpu" "overclock.gpu=1"
 else
         patch_cmdline "overclock.gpu" ""
@@ -163,21 +207,37 @@ fi
 sync
 # GPU oc end
 
+# CPU uc
+if [ "$cpu_uc" -eq 1 ]; then
+        ui_print "- Applying CPU underclock changes..."
+        ui_print "- CPU is underclocked to 1.4Ghz!"
+        patch_cmdline "underclock.cpu" "underclock.cpu=1"
+elif [ "$cpu_uc" -eq 2 ]; then
+        ui_print "- Applying CPU underclock changes..."
+        ui_print "- CPU is underclocked to 1.8Ghz!"
+        patch_cmdline "underclock.cpu" "underclock.cpu=2"
+else
+        patch_cmdline "underclock.cpu" ""
+fi
+sync
+# CPU uc end
+
 # Wired headphone button mode
 if [ "$hbutton" -eq 2 ]; then
-	ui_print "- Applying headphone alternative button mode..."
-	patch_cmdline "wired.buttonmode" "wired.buttonmode=1"
+        ui_print "- Applying headphone alternative button mode..."
+        patch_cmdline "wired.buttonmode" "wired.buttonmode=1"
 else
-	patch_cmdline "wired.buttonmode" ""
+        patch_cmdline "wired.buttonmode" ""
 fi
 # Wired headphone button mode
 
 # Zram
 if [ "$zram_size" -ne 7 ]; then
-	ui_print "- Applying zram changes..."
-	patch_cmdline "zram.resize" "zram.resize=$zram_size"
+        ui_print "- Applying zram changes..."
+	ui_print "- ZRAM is resized to $zram_size GB!"
+        patch_cmdline "zram.resize" "zram.resize=$zram_size"
 else
-	patch_cmdline "zram.resize" ""
+        patch_cmdline "zram.resize" ""
 fi
 # Zram end
 
