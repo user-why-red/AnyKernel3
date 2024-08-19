@@ -1,9 +1,9 @@
 # Kernel info
 ini_set("kernel_name",             "San-Kernel");
-ini_set("kernel_version",          "Codename-RX.X.XXX");
+ini_set("kernel_version",          "BumbleBee-R1.1.102");
 ini_set("kernel_author",           "user_why_red Aka Santhosh");
 ini_set("kernel_device",           "Whyred");
-ini_set("kernel_date",             "0000.00.00");
+ini_set("kernel_date",             "2024.07.16");
 # End
 
 # Splash algorithm  and themes
@@ -65,7 +65,7 @@ if prop("lang.prop", "selected") == "1" then
 
 	setvar("s_oc_gpu",       "Need to overclock GPU?");
 	setvar("s_oc_gpu_note",  "Note: Choose \"yes\" if you need best performance and gaming\n& don't care about GPU life and battery life.\n\nBeware of overheat and high electricity bill");
-        setvar("s_oc_gpu_yes",   "Yes (Base: 19Mhz, Max: 585Mhz)");
+        setvar("s_oc_gpu_yes",   "Yes (Base: 19Mhz, Max: 630Mhz)");
         setvar("s_oc_gpu_no",    "No (Base: 19Mhz, Max: 430Mhz)");
 
 	setvar("s_uc",           "Need to underclock CPU?");
@@ -177,7 +177,7 @@ if prop("lang.prop", "selected") == "2" then
 
 	setvar("s_oc_gpu",	 "Perlu melakukan overclock GPU?");
         setvar("s_oc_gpu_note",  "Catatan: Pilih \"ya\" jika Anda memerlukan performa dan permainan terbaik\n& tidak peduli dengan masa pakai GPU dan masa pakai baterai.\n\nWaspadalah terhadap panas berlebih dan tagihan listrik yang tinggi");
-        setvar("s_oc_gpu_yes",   "Ya (Basis: 19Mhz, Maks: 585Mhz)");
+        setvar("s_oc_gpu_yes",   "Ya (Basis: 19Mhz, Maks: 630Mhz)");
         setvar("s_oc_gpu_no",	 "Tidak (Basis: 19Mhz, Maks: 430Mhz)");
 
 	setvar("s_uc",		 "Perlu melakukan underclock pada CPU?");
