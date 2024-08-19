@@ -4,7 +4,7 @@
 ## AnyKernel setup
 # begin properties
 properties() { '
-kernel.string=San-Kernel-Codename-RX.X.XXX by @user_why_red
+kernel.string=San-Kernel-Franxx-R1.1.100 by @user_why_red
 do.devicecheck=1
 do.modules=0
 do.systemless=1
@@ -199,7 +199,7 @@ sync
 #GPU oc
 if [ "$gpu_oc" -eq 1 ]; then
 	ui_print "- Applying GPU overclock changes..."
-	ui_print "- GPU is overclocked to 585Mhz(Adreno 509) or 750Mhz(Adreno 512)!"
+	ui_print "- GPU is overclocked to 630Mhz"
         patch_cmdline "overclock.gpu" "overclock.gpu=1"
 else
         patch_cmdline "overclock.gpu" ""
