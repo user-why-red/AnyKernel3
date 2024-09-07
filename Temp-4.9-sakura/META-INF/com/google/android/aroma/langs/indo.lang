@@ -1,0 +1,70 @@
+﻿### LICENSE:
+#
+# Copyright (C) 2011 Ahmad Amarullah ( http://amarullz.com/ )
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+### LANGUAGE STRING RESOURCE FILE
+#
+#   Language  : Indonesian
+#   By        : user_why_red + google
+#
+#
+
+#
+#--- COMMON SYSTEM STRING RESOURCE
+#
+text_ok=OKE
+text_next=Berikutnya
+text_back=Kembali
+text_yes=Ya
+text_no=Tidak
+text_about=Tentang
+text_calibrating=Alat kalibrasi
+text_quit=Keluar dari instalasi
+text_quit_msg=Apakah Anda yakin untuk keluar dari penginstal?
+
+#
+#-- CUSTOM STRING RESOURCE
+#
+common.for=Untuk
+
+langtest.title=Tes bahasa
+langtest.multiline=Teks ini terletak di langs/indo.lang\
+Gunakan garis miring terbalik sebelum enter untuk menambahkan baris baru\
+\
+Anda juga dapat melakukan <b>Pemformatan</b> di dalam sumber daya string bahasa.\
+\
+Terima kasih telah menggunakan Penginstal AROMA
+
+#-- End of string without any backslash for multiline text
+
+
+themes.title=Pilih tema
+themes.desc=Silakan pilih tema penginstal yang ingin Anda gunakan dalam pengujian instalasi ini:
+
+welcome.title=Selamat datang
+welcome.text1=Anda akan Menginstal
+welcome.text2=Penginstal AROMA adalah Penginstal ROM ANDROID Sentuh dan Dapat Disesuaikan yang pertama dan satu-satunya di Dunia.
+welcome.version=VERSI: KAPAN
+welcome.codename=NAMA KODE
+welcome.updated=DIPERBARUI
+welcome.next=Tekan Berikutnya untuk Melanjutkan Instalasi
+
+terms.title=syarat dan Ketentuan
+terms.desc=Mohon dibaca dengan seksama Syarat dan Ketentuan Installer AROMA Dibawah ini.
+terms.check=Saya Setuju dengan Syarat dan Ketentuan ini...
+terms.confirm=Silakan periksa perjanjiannya...
+
+changelog.title=log perubahan
+changelog.desc=Lihat log perubahan aroma

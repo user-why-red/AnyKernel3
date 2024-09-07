@@ -1,0 +1,458 @@
+# Kernel info
+ini_set("kernel_name",             "San-Kernel");
+ini_set("kernel_version",          "RedSapphire-R1.0.0");
+ini_set("kernel_author",           "user_why_red Aka Santhosh");
+ini_set("kernel_device",           "Sakura");
+ini_set("kernel_date",             "2024.08.25");
+# End
+
+# Splash algorithm  and themes
+
+ini_set("force_colorspace", "rgba");
+
+fontresload("0", "ttf/VonwaonBitmap-16pxLite.ttf", "12");
+fontresload("1", "ttf/VonwaonBitmap-16pxLite.ttf", "16");
+theme("default");
+
+setvar("random_num", resexec("random_num.sh"));
+
+# 2/5
+cmp(getvar("random_num"), ">=", "0") && cmp(getvar("random_num"), "<=", "3") && splash(1500, "splash");
+# 2/5
+cmp(getvar("random_num"), ">=", "4") && cmp(getvar("random_num"), "<=", "7") && splash(1500, "splash_2");
+# 1/5
+cmp(getvar("random_num"), ">=", "8") && splash(2000, "splash_3");
+# Splash algorithm  and themes end
+
+# Select language
+menubox(
+    "\n<@center>Select Language</@>",
+    "<@center>\nPilih bahasa\n\n\n\n</@>",
+    "",
+    "lang.prop",
+    "English", "", "",
+    "Indonesian", "", ""
+);
+# End
+
+# Variables for english language
+if prop("lang.prop", "selected") == "1" then
+    loadlang("langs/en.lang");
+	setvar("s_version",      "Version");
+	setvar("s_author",       "Author");
+	setvar("s_release",      "Release");
+	setvar("s_press_next",   "Press next to continue...");
+	setvar("s_error",        "Error!");                    
+	setvar("s_warning",      "Warning!");
+	setvar("s_ok",           "OK!");
+	setvar("s_done",         "Done!");
+	setvar("s_plswait",      "Please wait...");
+	
+	setvar("s_x_device",	 "This kernel is only for Redmi 6 Pro (Sakura) devices!");
+	
+	setvar("s_clock",        "Dynamic CPU frequency management!");
+	setvar("s_clock_note",   "Note: Modifying CPU frequencies beyond the manufacturer’s specified limits is not recommended,\n And overclocking or underclocking can cause instability, hardware damage");
+	setvar("s_clock_oc",     "Yes! (Overclocking)");
+	setvar("s_clock_no",     "No! (Keep stock frequency scaling)");
+
+	setvar("s_oc",           "Need to overclock CPU?");
+	setvar("s_oc_note",      "Note: Choose \"yes\" if you need best performance and gaming\n& don't care about CPU life and battery life.\n\nBeware of overheat and high electricity bill");
+	setvar("s_oc_warning",   "If the device is damaged or data is lost due to OC, developer of San-Kernel is not responsible for it!");
+	setvar("s_oc_std",       "Yes (Standard) (BIG: 400-2208 GHz)");
+    setvar("s_oc_def",       "No (Default) (use stock frequency for MSM8953)");
+
+	setvar("s_oc_gpu",       "Need to overclock GPU?");
+	setvar("s_oc_gpu_note",  "Note: Choose \"yes\" if you need best performance and gaming\n& don't care about GPU life and battery life.\n\nBeware of overheat and high electricity bill");
+    setvar("s_oc_gpu_yes",   "Yes (Base: 19Mhz, Max: 725Mhz)");
+    setvar("s_oc_gpu_no",    "No (Base: 19Mhz, Max: 650Mhz)");
+
+	setvar("s_uv",           "Need UV (Undervolting)?");
+        setvar("s_uv_note",      "Note: Reducing the voltage can save battery, but excessive voltage reduction will cause device instability!\n(not booting, randomly reboot, abnormal display)\nAt this point you need to reflash this kernel and lower the UV level.");
+        setvar("s_uv_no",        "No, please keep default voltage.");
+        setvar("s_uv_yes",       "Yes, I need it!");
+        setvar("s_uv_warning",   "If the device is damaged or data is lost due to UV, developer of San-Kernel is not responsible for it!");
+
+        setvar("s_zram",         "Zram Configuration!");
+        setvar("s_zram_note",    "ZRAM is a feature in Linux that uses part of your RAM as compressed swap space, which means it can store more data in memory and access it quickly. This helps improve performance, especially on devices with limited memory.");
+        setvar("s_zram_s1",      "1GB (For light OS!)");
+        setvar("s_zram_s2",      "2GB (Default!)");
+        setvar("s_zram_s3",      "3GB (Recommended!)");
+        setvar("s_zram_s4",      "4GB (Far enough!)");
+        setvar("s_zram_s5",      "5GB (Overkill!)");
+        setvar("s_zram_s6",      "6GB (Not recommended!)");
+        setvar("s_zram_s7",      "Reset (Dont change anything!)");
+        
+	setvar("s_cpu_uv",      "Select UV level of the CPU cores");
+    setvar("s_cpu_uv_note",  "Undervolting can save power, but do not reduce much");
+	setvar("s_uv_lvl1",      "No UV (default)");
+	setvar("s_uv_lvl2",      "20 mV");
+	setvar("s_uv_lvl3",      "40 mV");
+	setvar("s_uv_lvl4",      "80 mV (Stable!)");
+	setvar("s_uv_lvl5",      "100 mV (Unstable!)");
+	setvar("s_uv_lvl6",      "120 mV (Broken!)");
+
+        setvar("s_ov",           "Need OV (Overvolting)?");
+        setvar("s_ov_note",      "Note: Increasing the voltage can improve performance, but excessive voltage boosting will cause device instability!\n(not booting, randomly reboot, Nuclear blast)\nAt this point you need to reflash this kernel and lower the OV level.");
+        setvar("s_ov_no",        "No, please keep default voltage.");
+        setvar("s_ov_yes",       "Yes, I need it!");
+        setvar("s_ov_warning",   "If the device is damaged or data is lost due to OV, developer of San-Kernel is not responsible for it!");
+
+        setvar("s_cpu_ov",      "Select OV level of the CPU cores");
+        setvar("s_cpu_ov_note",  "Overvolting CPU can damage and weardown the component");
+        setvar("s_ov_lvl1",      "No OV (default)");
+        setvar("s_ov_lvl2",      "20 mV");
+        setvar("s_ov_lvl3",      "40 mV");
+        setvar("s_ov_lvl4",      "80 mV (Stable!)");
+        setvar("s_ov_lvl5",      "100 mV (Unstable/Overheat!)");
+        setvar("s_ov_lvl6",      "120 mV (Blast!)");
+
+	setvar("s_wipe_cache_t", "Wipe dalvik-cache & cache");
+	setvar("s_wipe_cache_w", "Do not do this if you don't know\nwhat are you doing!\n\nContinue?");
+	setvar("s_wipe_cache_d", "Note: The next boot may take 1~10 minutes,\nbecause system needs to rebuild dalvik-cache.\nPlease wait patiently.");
+	setvar("s_text_yes",     "Take the risk");
+	setvar("s_ready",        "Ready to install");
+	setvar("s_installing",   "Installing");
+	setvar("s_installing_1", "Installing San Kernel\nPlease wait");
+	setvar("s_ins_finish",   "Installation Completed");
+	setvar("s_ins_finish_1", "Congratulations!");
+	setvar("s_ins_finish_2", "has been installed into your device.");
+	setvar("s_reboot",       "Reboot your device now");
+	setvar("s_ins_failed",   "Installation Failed");
+	setvar("s_exit_code",    "Installer Status: ");
+	setvar("s_ready_con",    "Please confirm");
+	setvar("s_ready_ins",    "Install ");
+	setvar("s_abort",        "Abort installation");
+endif;
+# Variables for english language end
+
+# Variables for indonesian language
+if prop("lang.prop", "selected") == "2" then
+    loadlang("langs/indo.lang");
+	setvar("s_version",      "Versi: kapan");
+        setvar("s_author",       "Pengarang");
+	setvar("s_release",      "Melepaskan");
+        setvar("s_press_next",   "Tekan tombol apa saja untuk melanjutkan...");
+	setvar("s_error",        "Kesalahan!");
+        setvar("s_warning",      "Kesalahan!");
+        setvar("s_ok",           "Oke!");
+        setvar("s_done",         "Selesai!");
+	setvar("s_plswait",      "Harap tunggu...");
+
+	setvar("s_x_device", "Kernel ini hanya untuk perangkat Redmi 6 Pro (Sakura)!");
+	
+	setvar("s_clock", "Manajemen frekuensi CPU Dinamis!");
+	setvar("s_clock_note", "Catatan: Tidak disarankan untuk mengubah frekuensi CPU melebihi batas yang ditentukan pabrikan,\n Dan overclocking atau underclocking dapat menyebabkan ketidakstabilan, kerusakan perangkat keras");
+	setvar("s_clock_oc", "Ya! (Overclocking)");
+	setvar("s_clock_no", "Tidak! (Pertahankan skala frekuensi stok)");
+
+	setvar("s_oc", "Perlu melakukan overclock CPU?");
+	setvar("s_oc_note", "Catatan: Pilih \"ya\" jika Anda memerlukan kinerja dan permainan terbaik\n& tidak peduli dengan masa pakai CPU dan masa pakai baterai.\n\nWaspadalah terhadap panas berlebih dan tagihan listrik yang tinggi");
+	setvar("s_oc_warning", "Jika perangkat rusak atau data hilang karena OC, pengembang San-Kernel tidak bertanggung jawab!");
+	setvar("s_oc_std", "Ya (Standar) (BESAR: 400-2208 GHz)");
+    setvar("s_oc_def", "Tidak (Default) (gunakan frekuensi stok untuk MSM8953)");
+
+	setvar("s_oc_gpu", "Perlu melakukan overclock GPU?");
+	setvar("s_oc_gpu_note", "Catatan: Pilih \"ya\" jika Anda memerlukan performa dan permainan terbaik\n& tidak peduli dengan masa pakai GPU dan masa pakai baterai.\n\nWaspadalah terhadap panas berlebih dan tagihan listrik yang tinggi");
+    setvar("s_oc_gpu_yes", "Ya (Basis: 19Mhz, Maks: 725Mhz)");
+    setvar("s_oc_gpu_no", "Tidak (Basis: 19Mhz, Maks: 650Mhz)");
+    
+	setvar("s_uv", "Butuh UV (Undervolting)?");
+        setvar("s_uv_note", "Catatan: Mengurangi tegangan dapat menghemat baterai, tetapi pengurangan tegangan yang berlebihan akan menyebabkan ketidakstabilan perangkat!\n(tidak dapat melakukan booting, reboot secara acak, tampilan tidak normal)\nPada titik ini Anda perlu melakukan reflash kernel ini dan menurunkan tingkat UV.");
+        setvar("s_uv_no", "Tidak, harap pertahankan voltase default.");
+        setvar("s_uv_yes", "Ya, saya membutuhkannya!");
+        setvar("s_uv_warning", "Jika perangkat rusak atau data hilang karena UV, pengembang San-Kernel tidak bertanggung jawab!");
+
+        setvar("s_zram", "Konfigurasi Zram!");
+        setvar("s_zram_note", "ZRAM adalah fitur di Linux yang menggunakan sebagian RAM Anda sebagai ruang swap terkompresi, yang berarti dapat menyimpan lebih banyak data di memori dan mengaksesnya dengan cepat. Hal ini membantu meningkatkan kinerja, terutama pada perangkat dengan memori terbatas. ");
+        setvar("s_zram_s1", "1GB (Untuk OS ringan!)");
+        setvar("s_zram_s2", "2GB (Bawaan!)");
+        setvar("s_zram_s3", "3GB (Disarankan!)");
+        setvar("s_zram_s4", "4GB (Cukup jauh!)");
+        setvar("s_zram_s5", "5GB (Berlebihan!)");
+        setvar("s_zram_s6", "6GB (Tidak disarankan!)");
+        setvar("s_zram_s7", "Reset (Jangan ubah apa pun!)");
+        
+	setvar("s_cpu_uv", "Pilih level UV inti CPU");
+    setvar("s_cpu_uv_note", "Undervolting dapat menghemat daya, namun tidak mengurangi banyak");
+	setvar("s_uv_lvl1", "Tidak ada UV (default)");
+	setvar("s_uv_lvl2", "20 mV");
+	setvar("s_uv_lvl3", "40 mV");
+	setvar("s_uv_lvl4", "80 mV (Stabil!)");
+	setvar("s_uv_lvl5", "100 mV (Tidak Stabil!)");
+	setvar("s_uv_lvl6", "120 mV (Rusak!)");
+    
+    setvar("s_ov", "Butuh OV (Overvolting)?");
+        setvar("s_ov_note", "Catatan: Meningkatkan tegangan dapat meningkatkan kinerja, tetapi peningkatan tegangan yang berlebihan akan menyebabkan ketidakstabilan perangkat!\n(tidak dapat melakukan booting, reboot secara acak, Ledakan nuklir)\nPada titik ini Anda perlu melakukan reflash kernel ini dan menurunkan tingkat OV.");
+        setvar("s_ov_no", "Tidak, harap pertahankan voltase default.");
+        setvar("s_ov_yes", "Ya, saya membutuhkannya!");
+        setvar("s_ov_warning", "Jika perangkat rusak atau data hilang karena OV, pengembang San-Kernel tidak bertanggung jawab!");
+
+        setvar("s_cpu_ov", "Pilih level OV dari inti CPU");
+        setvar("s_cpu_ov_note", "CPU yang kelebihan tegangan dapat merusak dan melemahkan komponen");
+        setvar("s_ov_lvl1", "Tidak ada OV (default)");
+        setvar("s_ov_lvl2", "20 mV");
+        setvar("s_ov_lvl3", "40 mV");
+        setvar("s_ov_lvl4", "80 mV (Stabil!)");
+        setvar("s_ov_lvl5", "100 mV (Tidak Stabil/Terlalu Panas!)");
+        setvar("s_ov_lvl6", "120 mV (Ledakan!)");
+
+	setvar("s_wipe_cache_t", "Hapus dalvik-cache & cache");
+        setvar("s_wipe_cache_w", "Jangan lakukan ini jika Anda tidak tahu\napa yang Anda lakukan!\n\nLanjutkan?");
+        setvar("s_wipe_cache_d", "Catatan: Boot berikutnya mungkin memakan waktu 1~10 menit,\nkarena sistem perlu membangun kembali dalvik-cache.\nHarap menunggu dengan sabar.");
+        setvar("s_text_yes",	 "Ambil resiko");
+        setvar("s_ready",	 "Siap dipasang");
+        setvar("s_installing",	 "Instalasi");
+        setvar("s_installing_1", "Menginstal San Kernel\nMohon tunggu");
+        setvar("s_ins_finish",	 "Instalasi Selesai");
+        setvar("s_ins_finish_1", "Selamat!");
+        setvar("s_ins_finish_2", "telah diinstal pada perangkat Anda.");
+        setvar("s_reboot",	 "Reboot perangkat Anda sekarang");
+        setvar("s_ins_failed",	 "Instalasi Gagal");
+        setvar("s_exit_code",	 "Status Pemasang: ");
+        setvar("s_ready_con",	 "Harap konfirmasi");
+        setvar("s_ready_ins",	 "Instal");
+        setvar("s_abort",	 "Batalkan instalasi");
+
+endif;
+# Indonesian lang variables end
+
+# Display Package details
+viewbox(
+    "\n<@center>" + ini_get("kernel_name") + "</@>",
+    "<@center>\n" + ini_get("kernel_device") + "\n\n</@>" +
+    "\n\n\n\n  " + getvar("s_version") + " \t: <#selectbg_g>" + ini_get("kernel_version") + "</#>\n" +
+    "  " + getvar("s_author") + " \t: <#selectbg_g>" + ini_get("kernel_author") + "</#>\n" +
+    "  " + getvar("s_release") + " \t: <#selectbg_g>" + ini_get("kernel_date") + "</#>\n\n\n" +
+    getvar("s_press_next"),
+    ""
+);
+# End
+
+# Check device
+if resexec("is_sakura.sh") != "0" then 
+   alert(
+	getvar("s_error"),
+	getvar("s_x_device"),
+	"@trash",
+	getvar("s_ok")
+	);
+	exit("");
+endif;
+# Check device end
+
+# Clock confirm
+selectbox(
+    "\n\n<@center>" + getvar("s_clock") + "</@>",
+    "<@center>\n\n\n\n\n\n\n\n" + getvar("s_clock_note") + "\n</@>",
+    "",
+    "clk_confirm.prop",
+    getvar("s_clock_oc"), "", 1,
+    getvar("s_clock_no"), "", 0
+);
+# Clock confirm end
+
+# Clock oc risk button
+if prop("clk_confirm.prop", "selected.0") == "1" then
+    alert(
+        getvar("s_warning"),
+        getvar("s_oc_warning"),
+        "@warning",
+        getvar("s_text_yes")
+);
+# Clock oc risk button end
+
+# CPU oc
+selectbox(
+    "\n\n<@center>" + getvar("s_oc") + "</@>",
+    "<@center>\n\n\n\n\n\n\n\n" + getvar("s_oc_note") + "\n</@>",
+    "",
+    "cpu_oc.prop",
+    getvar("s_oc_std"), "", 0,
+    getvar("s_oc_def"), "", 1
+);	        
+# CPU oc end
+
+# GPU oc
+selectbox(
+    "\n\n<@center>" + getvar("s_oc_gpu") + "</@>",
+    "<@center>\n\n\n\n\n\n\n\n" + getvar("s_oc_gpu_note") + "\n</@>",
+    "",
+    "gpu_oc.prop",
+    getvar("s_oc_gpu_yes"), "", 0,
+    getvar("s_oc_gpu_no"), "", 1
+);
+
+endif;
+# GPU oc end
+
+
+# Uv confirm
+selectbox(
+    "\n\n<@center>" + getvar("s_uv") + "</@>",
+    "<@center>\n\n\n\n\n\n\n\n" + getvar("s_uv_note") + "\n</@>",
+    "",
+    "uv_confirm.prop",
+    getvar("s_uv_no"), "", 1,
+    getvar("s_uv_yes"), "", 0
+);
+# Uv confirm end
+
+# Uv risk button
+if prop("uv_confirm.prop", "selected.0") == "2" then
+    alert(
+        getvar("s_warning"),
+        getvar("s_uv_warning"),
+        "@warning",
+        getvar("s_text_yes")
+);
+# Uv risk button end
+
+# Uv for CPU cores
+    selectbox(
+        "\n\n<@center>" + getvar("s_cpu_uv") + "</@>",
+        "<@center>\n\n\n\n\n\n\n\n" + getvar("s_cpu_uv_note") + "\n</@>",
+        "",
+	"cpu_uv_level.prop",
+	getvar("s_uv_lvl1"), "", 1,
+        getvar("s_uv_lvl2"), "", 0,
+        getvar("s_uv_lvl3"), "", 0,
+        getvar("s_uv_lvl4"), "", 0,
+        getvar("s_uv_lvl5"), "", 0,
+	getvar("s_uv_lvl6"), "", 0
+);
+
+endif;
+# Uv select end
+
+# Ov confirm
+selectbox(
+    "\n\n<@center>" + getvar("s_ov") + "</@>",
+    "<@center>\n\n\n\n\n\n\n\n" + getvar("s_ov_note") + "\n</@>",
+    "",
+    "ov_confirm.prop",
+    getvar("s_ov_no"), "", 1,
+    getvar("s_ov_yes"), "", 0
+);
+# Ov confirm end
+
+# Ov risk button
+if prop("ov_confirm.prop", "selected.0") == "2" then
+    alert(
+        getvar("s_warning"),
+        getvar("s_ov_warning"),
+        "@warning",
+        getvar("s_text_yes")
+);
+# Ov risk button end
+
+# Ov for CPU cores
+    selectbox(
+        "\n\n<@center>" + getvar("s_cpu_ov") + "</@>",
+        "<@center>\n\n\n\n\n\n\n\n" + getvar("s_cpu_ov_note") + "\n</@>",
+        "",
+        "cpu_ov_level.prop",
+        getvar("s_ov_lvl1"), "", 1,
+        getvar("s_ov_lvl2"), "", 0,
+        getvar("s_ov_lvl3"), "", 0,
+        getvar("s_ov_lvl4"), "", 0,
+        getvar("s_ov_lvl5"), "", 0,
+        getvar("s_ov_lvl6"), "", 0
+);
+
+endif;
+# Ov select end
+
+# Zram
+selectbox(
+        "\n\n<@center>" + getvar("s_zram") + "</@>",
+        "<@center>\n\n\n\n\n\n\n\n" + getvar("s_zram_note") + "\n</@>",
+        "",
+        "zram_size.prop",
+        getvar("s_zram_s1"), "", 1,
+        getvar("s_zram_s2"), "", 0,
+        getvar("s_zram_s3"), "", 0,
+        getvar("s_zram_s4"), "", 0,
+        getvar("s_zram_s5"), "", 0,
+        getvar("s_zram_s6"), "", 0,
+        getvar("s_zram_s7"), "", 0
+);
+
+# Zram end
+
+# Properties over, Installation
+menubox(
+    "\n\n<@center>" + getvar("s_ready") + "</@>",
+    "<@center>\n\n\n\n\n\n\n\n" + getvar("s_ready_con") + "\n</@>",
+    "",
+    "menu.prop",
+    getvar("pa_ready_ins") + ini_get("kernel_name") + " " + ini_get("kernel_version"), "", "@install",
+    getvar("s_abort"), "", "@trash",
+    getvar("s_wipe_cache_t"), "", "@action",
+    " ", "", ""
+);
+
+prop("menu.prop", "selected") == "2" && exit("");
+
+if prop("menu.prop", "selected") == "3" then
+    if confirm(
+        getvar("s_warning"),
+        getvar("s_wipe_cache_w"),
+        "@warning") == "yes"
+    then
+        pleasewait(getvar("s_plswait"));
+        resexec("wipe_dalvik_cache.sh");
+        alert(
+            getvar("s_done"),
+            getvar("s_wipe_cache_d"),
+            "@done",
+            getvar("s_ok")
+        );
+    endif;
+    back("1");
+endif;
+
+if prop("menu.prop", "selected") == "4" then
+    if readtmpfile("darkness") == "4" then
+        writetmpfile("darkness", "0");
+        textbox(
+            "Meanwhile...",
+            "Abandoned in the void of nothingness",
+            "",
+            resread("Darkness.txt")
+        );
+        back("2");
+    else
+        writetmpfile("darkness", cal(readtmpfile("darkness") || "0", "+", "1"));
+    endif;
+    back("1");
+endif;
+
+setvar("retstatus", install(
+    "<@center>\n" + getvar("s_installing") + "</@>",
+    "<@center>\n" + getvar("s_installing_1") + "</@>",
+    "")
+);
+
+ini_set("text_next", getvar("pa_finish"));
+
+if getvar("retstatus") == "0" then
+    checkviewbox(
+	getvar("s_ins_finish"),
+        "<#selectbg_g>" + getvar("s_ins_finish_1") + "</#>\n\n" +
+        "" + ini_get("kernel_name") + " " + getvar("s_ins_finish_2") + "\n\n" +
+        getvar("s_exit_code") + getvar("retstatus") + "\n\n",
+        "@welcome",
+        getvar("s_reboot"),
+        "0",
+        "reboot_it"
+    );
+else
+    viewbox(
+        getvar("s_ins_failed"),
+        "\n" + getvar("pa_exit_code") + getvar("retstatus"),
+        "@warning"
+    );
+endif;
+
+getvar("reboot_it") == "1" && reboot("onfinish");
+# End
