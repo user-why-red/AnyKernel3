@@ -1,9 +1,9 @@
 # Kernel info
 ini_set("kernel_name",             "San-Kernel");
-ini_set("kernel_version",          "BumbleBee-R1.1.102");
+ini_set("kernel_version",          "Revenant-R1.1.108");
 ini_set("kernel_author",           "user_why_red Aka Santhosh");
 ini_set("kernel_device",           "Whyred");
-ini_set("kernel_date",             "2024.07.16");
+ini_set("kernel_date",             "2025.09.5");
 # End
 
 # Splash algorithm  and themes
@@ -90,6 +90,13 @@ if prop("lang.prop", "selected") == "1" then
         setvar("s_zram_s5",      "5GB (Overkill!)");
         setvar("s_zram_s6",      "6GB (Not recommended!)");
         setvar("s_zram_s7",      "Reset (Dont change anything!)");
+        
+        setvar("s_sched_boost",      "Scheduler Boost Source!");
+        setvar("s_sched_boost_note", "Picks where the CPU scheduler takes its boost from. Stune is the old cgroup boost (top-app, foreground). Uclamp is per-task util clamp used by camera, NNAPI and newer Android. Hybrid uses both and is what this kernel shipped with.");
+        setvar("s_sched_boost_s1",   "Stune only!");
+        setvar("s_sched_boost_s2",   "Uclamp only!");
+        setvar("s_sched_boost_s3",   "Hybrid (Default!)");
+        setvar("s_sched_boost_s4",   "Reset (Dont change anything!)");
 
 	setvar("s_em",           "Select EAS energy model");
 	setvar("s_em_1",         "Note: The default is \"CAF\" energy model.\nKeep default if you don't know about energy model.");
@@ -202,6 +209,13 @@ if prop("lang.prop", "selected") == "2" then
         setvar("s_zram_s5",      "5GB (Berlebihan!)");
         setvar("s_zram_s6",      "6GB (Tidak disarankan!)");
         setvar("s_zram_s7",      "Reset (Jangan ubah apa pun!)");
+        
+        setvar("s_sched_boost",      "Sumber Boost Scheduler!");
+        setvar("s_sched_boost_note", "Memilih dari mana scheduler CPU mengambil boost. Stune adalah boost cgroup lama (top-app, foreground). Uclamp adalah util clamp per-task yang dipakai kamera, NNAPI, dan Android baru. Hybrid memakai keduanya dan itu default kernel ini.");
+        setvar("s_sched_boost_s1",   "Hanya Stune!");
+        setvar("s_sched_boost_s2",   "Hanya Uclamp!");
+        setvar("s_sched_boost_s3",   "Hybrid (Default!)");
+        setvar("s_sched_boost_s4",   "Reset (Jangan ubah apapun!)");
 
 	setvar("s_em",		 "Pilih model energi EAS");
         setvar("s_em_1",	 "Catatan: Defaultnya adalah model energi \"CAF\".\nTetap default jika Anda tidak tahu tentang model energi.");
@@ -474,6 +488,20 @@ selectbox(
 );
 
 # Zram end
+
+# Sched boost source
+selectbox(
+        "\n\n<@center>" + getvar("s_sched_boost") + "</@>",
+        "<@center>\n\n\n\n\n\n\n\n" + getvar("s_sched_boost_note") + "\n</@>",
+        "",
+        "sched_boost.prop",
+        getvar("s_sched_boost_s1"), "", 0,
+        getvar("s_sched_boost_s2"), "", 0,
+        getvar("s_sched_boost_s3"), "", 1,
+        getvar("s_sched_boost_s4"), "", 0
+);
+
+# Sched boost source end
 
 # Energy model
 selectbox(

@@ -4,7 +4,7 @@
 ## AnyKernel setup
 # begin properties
 properties() { '
-kernel.string=San-Kernel-BumbleBee-R1.1.102 by @user_why_red
+kernel.string=San-Kernel-Revenant-R1.1.108 by @user_why_red
 do.devicecheck=1
 do.modules=0
 do.systemless=1
@@ -96,6 +96,7 @@ cpu_oc=$(aroma_get_value cpu_oc)
 cpu_uc=$(aroma_get_value cpu_uc)
 gpu_oc=$(aroma_get_value gpu_oc)
 zram_size=$(aroma_get_value zram_size)
+sched_boost=$(aroma_get_value sched_boost)
 uv_confirm=$(aroma_get_value uv_confirm)
 ov_confirm=$(aroma_get_value ov_confirm)
 ecpu_ov_level=$(aroma_get_value ecpu_ov_level)
@@ -230,6 +231,20 @@ else
         patch_cmdline "zram.resize" ""
 fi
 # Zram end
+
+# Sched boost source
+if [ "$sched_boost" -ne 4 ]; then
+        ui_print "- Applying sched boost source..."
+        case "$sched_boost" in
+                1) ui_print "- Boost source is stune!" ;;
+                2) ui_print "- Boost source is uclamp!" ;;
+                3) ui_print "- Boost source is hybrid!" ;;
+        esac
+        patch_cmdline "sched.boost_src" "sched.boost_src=$sched_boost"
+else
+        patch_cmdline "sched.boost_src" ""
+fi
+# Sched boost source end
 
 # We are not really modifying ramdisk
 cp -f $dtb_img ${split_img}/kernel_dtb
